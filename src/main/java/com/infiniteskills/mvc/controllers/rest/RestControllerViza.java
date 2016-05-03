@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = _PATH22,produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestControllerViza {
-    public static final String _PATH22 = "/restuslug";
+    public static final String _PATH22 = "/restuviza";
     public static final String ITEM_PATH = "/item";
     
      private VizaRepository uService;

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = _PATH15,produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestControllerStoimostuslug {
-    public static final String _PATH15 = "/restsotrudnik";
+    public static final String _PATH15 = "/reststoimostuslug";
     public static final String ITEM_PATH = "/item";
     
      private StoimostUslugRepository uService;

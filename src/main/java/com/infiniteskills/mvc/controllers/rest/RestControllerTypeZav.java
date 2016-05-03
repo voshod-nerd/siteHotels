@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = _PATH19,produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestControllerTypeZav {
-    public static final String _PATH19 = "/restsotrudnik";
+    public static final String _PATH19 = "/resttypezav";
     public static final String ITEM_PATH = "/item";
     
      private TypeZayavkaRepository uService;

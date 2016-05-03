@@ -75,52 +75,103 @@
         
         <h3>Редактирование списка отелей</h3>
         
-        <div class="row" ng-controller="Controller as ctrl" >
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-10">
-                
-            <table class="table table-bordered">
+    <div> 
+          <div class="generic-container" ng-controller="Controller as ctrl">
+            <div class="panel panel-default">
+                <div class="panel-heading"><span class="lead">Форма добавления отеля</span></div>
+                <div class="formcontainer">
+                    <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                        <input type="hidden" ng-model="ctrl.unit.id" />
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="col-md-2 control-lable" for="lastname">Местоположение</label>
+                                <div class="col-md-7">
+                                    <input type="text" ng-model="ctrl.unit.location" 
+                                           id="lastname" 
+                                           class="username form-control input-sm" 
+                                           placeholder="Введите местоположение" 
+                                           required ng-minlength="1"/>
+                                    <div class="has-error" ng-show="myForm.$dirty">
+                                        <span ng-show="myForm.name.$error.required">Это обязательное поле</span>
+                                        <span ng-show="myForm.name.$error.minlength">Минимальная длина - 1</span>
+                                        <span ng-show="myForm.name.$invalid">Неверное значение в поле</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="col-md-2 control-lable" for="firstname">Наименование</label>
+                                <div class="col-md-7">
+                                    <input type="text" ng-model="ctrl.unit.name" 
+                                           id="firstname" 
+                                           class="username form-control input-sm" 
+                                           placeholder="Введите наименование" 
+                                           required ng-minlength="2"/>
+                                    <div class="has-error" ng-show="myForm.$dirty">
+                                        <span ng-show="myForm.name.$error.required">Это обязательное поле</span>
+                                        <span ng-show="myForm.name.$error.minlength">Минимальная длина - 2</span>
+                                        <span ng-show="myForm.name.$invalid">Неверное значение в поле</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                       
+                        <div class="row">
+                            <div class="form-actions floatRight">
+                                <input type="submit"  
+                                       value="{{!ctrl.unit.id ? 'Добавить' : 'Изменить'}}" 
+                                       class="btn btn-primary btn-sm" 
+                                       ng-disabled="myForm.$invalid">
+                                <button type="button" 
+                                        ng-click="ctrl.reset()" 
+                                        class="btn btn-warning btn-sm" 
+                                        ng-disabled="myForm.$pristine">Сбросить</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div
+            <!-- Default panel contents -->
+            <div class="panel-heading"><span class="lead">Список отелей</span></div>
+            <div class="tablecontainer">
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>Наименование отеля</th>
                             <th>Местоположение</th>
-                            <th width="20%">Действия</th>
+                            <th>Наименование</th>
+                            
+                            <th width="20%"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="e in ctrl.units">
-                            <td><span ng-bind="e.id"></span></td>
-                            <td><span ng-bind="e.name"></span></td>
                             <td><span ng-bind="e.location"></span></td>
+                            <td><span ng-bind="e.name"></span></td>
+                           
                             <td>
                                 <button type="button" ng-click="ctrl.edit(e)" 
                                         class="btn btn-success custom-width"
                                         style=" width: 90px !important;">Изменить</button>  
                                 <button type="button" 
-                                        ng-click="ctrl.deleteU(e)" 
+                                        ng-click="ctrl.deleteEmployee(e)" 
                                         class="btn btn-danger custom-width"
                                         style=" width: 90px !important;">Удалить</button>
                             </td>
                         </tr>
                     </tbody>
-                </table>    
-                
-                
-            <div style="visibility: {{ctrl.vis}}" > 
-                <h3>Добавте еще один отель</h3>    
-            <label>Название отеля</label>
-            <input class="form-control " ng-model="ctrl.nameh" type="text" ></input>
-            <label>Местоположение</label>
-            <input class="form-control " type="text" ng-model="ctrl.loc" ></input>
-            <button ng-click="ctrl.addU()" class="btn btn-primary">Добавить</button>
-                </div>
-            </div>
-             <div class="col-md-1">
-            </div>
+                </table>
             </div>
         </div>
+    </div>
+        
+    
+                
+                
+          
+     
         
         
         

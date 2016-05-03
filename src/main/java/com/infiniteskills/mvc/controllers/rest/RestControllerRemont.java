@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = _PATH11,produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestControllerRemont {
-    public static final String _PATH11 = "/restpitanie";
+    public static final String _PATH11 = "/remont";
     public static final String ITEM_PATH = "/item";
     
      private RemontRepository uService;

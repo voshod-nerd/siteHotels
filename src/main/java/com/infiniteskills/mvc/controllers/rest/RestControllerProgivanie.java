@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = _PATH7,produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestControllerProgivanie {
-    public static final String _PATH7 = "/restpitanie";
+    public static final String _PATH7 = "/restprogivanie";
     public static final String ITEM_PATH = "/item";
     
      private ProgivanieRepository uService;

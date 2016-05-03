@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = _PATH16,produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestControllerTarifz {
-    public static final String _PATH16 = "/restsotrudnik";
+    public static final String _PATH16 = "/resttarif";
     public static final String ITEM_PATH = "/item";
     
      private TarifzRepository uService;

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.infiniteskills.mvc.controllers;
+package com.infiniteskills.mvc.controllers.rest;
 
-import static com.infiniteskills.mvc.controllers.ZayController.EMPLOYEES_PATH;
+import static com.infiniteskills.mvc.controllers.rest.RestControllerZayvka.EMPLOYEES_PATH;
 import com.infiniteskills.mvc.entity.Zayvka;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 @RequestMapping(path = EMPLOYEES_PATH,produces = MediaType.APPLICATION_JSON_VALUE)
-public class ZayController {
+public class RestControllerZayvka {
     
     public static final String EMPLOYEES_PATH = "/zav";
     public static final String ITEM_PATH = "/item";

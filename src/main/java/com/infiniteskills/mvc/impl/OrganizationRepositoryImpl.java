@@ -47,5 +47,15 @@ public class OrganizationRepositoryImpl implements OrganizationRepository {
         Organization mergedDep = em.merge(nomer);
         em.remove(mergedDep);
     }
+    
+    public Organization update(Organization hot) {
+         return em.merge(hot);
+    }
+
+    public Organization create(Organization hot) {
+       em.persist(hot);
+        return hot;
+    }
+    
 
 }

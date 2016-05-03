@@ -20,4 +20,8 @@ import java.util.List;
     Organization save(Organization orf);
 
     void delete(Organization org);
+    
+    Organization update(Organization hot);
+
+    Organization create(Organization hot);
 }

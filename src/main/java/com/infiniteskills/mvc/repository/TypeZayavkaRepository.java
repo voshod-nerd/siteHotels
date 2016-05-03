@@ -21,4 +21,8 @@ public interface TypeZayavkaRepository {
     Typeza save(Typeza post);
 
     void delete(Typeza post);
+    
+    Typeza update(Typeza rab);
+
+    Typeza create(Typeza rab);
 }

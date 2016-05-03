@@ -20,4 +20,8 @@ public interface DolgnostRepository {
     Dolgnost save(Dolgnost post);
 
     void delete(Dolgnost post); 
+    
+    Dolgnost update(Dolgnost zav);
+
+    Dolgnost create(Dolgnost zav);
 }

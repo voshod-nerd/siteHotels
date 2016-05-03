@@ -48,5 +48,16 @@ public class TypeZayavkaRepositoryImpl implements TypeZayavkaRepository {
         Typeza mergedDep = em.merge(nomer);
         em.remove(mergedDep);
     }
+    
+     public Typeza create(Typeza zav) {
+         em.persist(zav);
+        return zav;
+    }
+
+    public Typeza update(Typeza zav) {
+        //int version = find(zav).getVersion();
+        //Zayvka.setVersion(version);
+        return em.merge(zav);
+    }
 
 }

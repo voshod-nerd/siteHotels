@@ -3,70 +3,60 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.infiniteskills.mvc.controllers;
+package com.infiniteskills.mvc.controllers.rest;
 
-
-import static com.infiniteskills.mvc.controllers.HotelsController._PATH;
-import com.infiniteskills.mvc.entity.Hotel;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.infiniteskills.mvc.repository.HotelRepository;
+import static com.infiniteskills.mvc.controllers.rest.RestControllerViza._PATH22;
+import com.infiniteskills.mvc.entity.Viza;
+import com.infiniteskills.mvc.repository.VizaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 /**
  *
  * @author Юыху
  */
-
 @RestController
-@RequestMapping(path = _PATH,produces = MediaType.APPLICATION_JSON_VALUE)
-public class HotelsController {
-    public static final String _PATH = "/resthotel";
+@RequestMapping(path = _PATH22,produces = MediaType.APPLICATION_JSON_VALUE)
+public class RestControllerViza {
+    public static final String _PATH22 = "/restuslug";
     public static final String ITEM_PATH = "/item";
     
-     private HotelRepository uService;
+     private VizaRepository uService;
      
     @Autowired(required = false)
-    public void setService(HotelRepository uService) {
+    public void setService(VizaRepository uService) {
         this.uService = uService;
     }
      
     
      @RequestMapping(method = RequestMethod.GET)
-    public List<Hotel> getUnitList() {
-        
-        System.out.println("I heree");
-         List<Hotel> lsHotel = uService.findAll();
-          System.out.println("size is ="+lsHotel.size());
-        for (Hotel dept : lsHotel) {
-            System.out.println("name " + dept.getName());
-        }
+    public List<Viza> getUnitList() {
         return uService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST,
             path = ITEM_PATH,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Hotel createU(@RequestBody Hotel zav) {
+    public Viza createU(@RequestBody Viza zav) {
         return uService.create(zav);
     }
 
     @RequestMapping(method = RequestMethod.PUT,
             path = ITEM_PATH,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Hotel updateU(@RequestBody Hotel zav) {
+    public Viza updateU(@RequestBody Viza zav) {
         return uService.update(zav);
     }
 
     @RequestMapping(method = RequestMethod.DELETE,
             path = ITEM_PATH,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteU(@RequestBody Hotel zav) {
+    public void deleteU(@RequestBody Viza zav) {
         uService.delete(zav);
     }
-    
-    
 }

@@ -46,4 +46,14 @@ public class DolgnostRepositoryImpl implements DolgnostRepository {
           Dolgnost mergedDep = em.merge(nomer);
         em.remove(mergedDep);
     }
+    
+    public Dolgnost update(Dolgnost hot) {
+         return em.merge(hot);
+    }
+
+    public Dolgnost create(Dolgnost hot) {
+       em.persist(hot);
+        return hot;
+    }
+    
 }

@@ -38,7 +38,16 @@ public class NomerHotelRepositoryImpl implements NomerhotelRepository {
         Nomerhotel mergedDep = em.merge(nomer);
         em.remove(mergedDep);
     }
+    
+     public Nomerhotel update(Nomerhotel hot) {
+         return em.merge(hot);
+    }
 
+    public Nomerhotel create(Nomerhotel hot) {
+       em.persist(hot);
+        return hot;
+    }
+    
     
     }
     

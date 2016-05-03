@@ -47,4 +47,15 @@ public class SotrudnikRepositoryImpl implements SotrudnikRepository {
           Sotrudnik mergedDep = em.merge(nomer);
         em.remove(mergedDep);
     }
+    
+     public Sotrudnik create(Sotrudnik zav) {
+         em.persist(zav);
+        return zav;
+    }
+
+    public Sotrudnik update(Sotrudnik zav) {
+      
+        return em.merge(zav);
+    }
+    
 }

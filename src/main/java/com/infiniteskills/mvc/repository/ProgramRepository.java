@@ -5,14 +5,15 @@
  */
 package com.infiniteskills.mvc.repository;
 
-
 import com.infiniteskills.mvc.entity.Program;
 import java.util.List;
+
 /**
  *
  * @author Соколов
  */
-public interface ProgramRepository { 
+public interface ProgramRepository {
+
     List<Program> findAll();
 
     List<Program> findAllWithDetails();
@@ -21,5 +22,8 @@ public interface ProgramRepository {
 
     void delete(Program post);
 
-  
+    Program update(Program prog);
+
+    Program create(Program prog);
+
 }

@@ -51,7 +51,16 @@ public class ProgramRepositoryImpl implements ProgramRepository {
         em.remove(mergedDep);
     }
  
-  
+     public Program create(Program zav) {
+         em.persist(zav);
+        return zav;
+    }
+
+    public Program update(Program zav) {
+        //int version = find(zav).getVersion();
+        //Zayvka.setVersion(version);
+        return em.merge(zav);
+    }
  
     
    

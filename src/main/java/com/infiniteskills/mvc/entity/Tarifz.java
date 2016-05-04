@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -42,10 +43,12 @@ public class Tarifz implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "idtarif")
+     @JsonIgnore
     private Collection<Stimostpitan> stimostpitanCollection;
     @OneToMany(mappedBy = "idtarif")
     private Collection<Stoimostuslug> stoimostuslugCollection;
     @OneToMany(mappedBy = "idtarif")
+     @JsonIgnore
     private Collection<Program> programCollection;
 
     public Tarifz() {

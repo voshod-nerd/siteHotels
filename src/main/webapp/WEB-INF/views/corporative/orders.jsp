@@ -40,10 +40,10 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Cписок дейсвий<span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="themes">
-                               <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
-                        <li><a href="hotel" >Редактирование списка отелей</a></li>
-                        <li><a href="hotel" >Редактирование списка типа номеров</a></li>
-                        <li><a href="hotel" >Редактирование списка сотрудников</a></li>
+                        <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
+                        <li><a href="hotels" >Редактирование списка отелей</a></li>
+                        <li><a href="sotrudnik" >Редактирование личных карточек сотрудников</a></li>
+                        <li><a href="organiz" >Редактирование списка организаций</a></li>
                         <li><a href="hotel" >Редактирование списка типов заявок</a></li>
                         <li><a href="hotel" >Редактирование списка типов питания</a></li>
                         <li><a href="hotel" >Редактирование списка должностей</a></li>

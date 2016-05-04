@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Служебный сайт комплекса гостиниц</title>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -35,10 +35,10 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Cписок дейсвий<span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="themes">
-                               <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
+                        <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
                         <li><a href="hotels" >Редактирование списка отелей</a></li>
-                        <li><a href="hotel" >Редактирование списка типа номеров</a></li>
-                        <li><a href="hotel" >Редактирование списка сотрудников</a></li>
+                        <li><a href="sotrudnik" >Редактирование личных карточек сотрудников</a></li>
+                        <li><a href="organiz" >Редактирование списка организаций</a></li>
                         <li><a href="hotel" >Редактирование списка типов заявок</a></li>
                         <li><a href="hotel" >Редактирование списка типов питания</a></li>
                         <li><a href="hotel" >Редактирование списка должностей</a></li>
@@ -74,10 +74,10 @@
                 <div class="col-md-10">
                     <h3>Cписок доступных опций </h3>
                     <ul>
-                        <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
+                       <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
                         <li><a href="hotels" >Редактирование списка отелей</a></li>
-                        <li><a href="hotel" >Редактирование списка типа номеров</a></li>
-                        <li><a href="hotel" >Редактирование списка сотрудников</a></li>
+                        <li><a href="sotrudnik" >Редактирование личных карточек сотрудников</a></li>
+                        <li><a href="organiz" >Редактирование списка организаций</a></li>
                         <li><a href="hotel" >Редактирование списка типов заявок</a></li>
                         <li><a href="hotel" >Редактирование списка типов питания</a></li>
                         <li><a href="hotel" >Редактирование списка должностей</a></li>

@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -42,6 +43,7 @@ public class Typeuser implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "typeuser")
+    @JsonIgnore
     private Collection<User> userCollection;
 
     public Typeuser() {

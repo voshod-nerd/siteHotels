@@ -26,11 +26,11 @@ public class DolgnostRepositoryImpl implements DolgnostRepository {
      @PersistenceContext
     private EntityManager em;
     public List<Dolgnost> findAll() {
-       return em.createNamedQuery("Organization.findAll").getResultList();
+       return em.createNamedQuery("Dolgnost.findAll").getResultList();
     }
 
      public List<Dolgnost> findAllWithDetails() {
-        return em.createNamedQuery("Sotrudnik.findAllWithDetail").getResultList();
+        return em.createNamedQuery("Dolgnost.findAllWithDetail").getResultList();
     }
 
     public Dolgnost save(Dolgnost nomer) {

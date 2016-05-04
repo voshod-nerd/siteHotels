@@ -77,8 +77,19 @@ public class HomeController {
     }
     
     @RequestMapping(value = "/hotels", method = RequestMethod.GET)
-    public String hotelList(ModelMap model) {
+    public String pageHotel(ModelMap model) {
      return "corporative/hotels";
+    }
+    
+    
+    @RequestMapping(value = "/sotrudnik", method = RequestMethod.GET)
+    public String pageSotrudnik(ModelMap model) {
+     return "corporative/sotrudnik";
+    }
+    
+     @RequestMapping(value = "/organiz", method = RequestMethod.GET)
+    public String pageOrganization(ModelMap model) {
+     return "corporative/organization";
     }
     
     

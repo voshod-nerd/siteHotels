@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -61,6 +62,7 @@ public class Remont implements Serializable {
     @ManyToOne
     private Hotel idhotel;
     @OneToMany(mappedBy = "idremont")
+    @JsonIgnore
     private Collection<Rabota> rabotaCollection;
 
     public Remont() {

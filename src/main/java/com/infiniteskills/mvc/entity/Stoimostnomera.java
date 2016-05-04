@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Collection;
@@ -51,6 +52,7 @@ public class Stoimostnomera implements Serializable {
     @ManyToOne
     private Typenomerhotel idtypenomer;
     @OneToMany(mappedBy = "idstoimostnomer")
+     @JsonIgnore
     private Collection<Progivanie> progivanieCollection;
 
     public Stoimostnomera() {

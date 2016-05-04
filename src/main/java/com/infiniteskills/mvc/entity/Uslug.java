@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -43,6 +44,7 @@ public class Uslug implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "iduslug")
+    @JsonIgnore
     private Collection<Stoimostuslug> stoimostuslugCollection;
 
     public Uslug() {

@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -47,6 +48,7 @@ public class Stimostpitan implements Serializable {
     @ManyToOne
     private Pitanie idpitanie;
     @OneToMany(mappedBy = "idstoimostpit")
+     @JsonIgnore
     private Collection<Progivanie> progivanieCollection;
 
     public Stimostpitan() {

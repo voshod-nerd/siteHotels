@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -80,8 +81,10 @@ public class Client implements Serializable {
     @ManyToOne
     private User iduser;
     @OneToMany(mappedBy = "idclient")
+    @JsonIgnore
     private Collection<Bron> bronCollection;
     @OneToMany(mappedBy = "idclient")
+    @JsonIgnore
     private Collection<Progivanie> progivanieCollection;
 
     public Client() {

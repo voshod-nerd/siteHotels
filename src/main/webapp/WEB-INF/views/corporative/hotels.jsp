@@ -43,10 +43,10 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Cписок дейсвий<span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="themes">
-                               <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
+                        <li><a href="orders">Подача и редактирование списка заявок</a></li>
                         <li><a href="hotel" >Редактирование списка отелей</a></li>
                         <li><a href="hotel" >Редактирование списка типа номеров</a></li>
-                        <li><a href="hotel" >Редактирование списка сотрудников</a></li>
+                        <li><a href="organiz" >Редактирование списка организаций</a></li>
                         <li><a href="hotel" >Редактирование списка типов заявок</a></li>
                         <li><a href="hotel" >Редактирование списка типов питания</a></li>
                         <li><a href="hotel" >Редактирование списка должностей</a></li>
@@ -73,15 +73,18 @@
             </div>
         </div>
         
-        <h3>Редактирование списка отелей</h3>
+        
+        
+        <br>
+        <br>
         
     <div> 
           <div class="generic-container" ng-controller="Controller as ctrl">
             <div class="panel panel-default">
-                <div class="panel-heading"><span class="lead">Форма добавления отеля</span></div>
+                <div class="panel-heading"><span class="lead">Форма редактирования списка гостиниц</span></div>
                 <div class="formcontainer">
                     <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-                        <input type="hidden" ng-model="ctrl.unit.id" />
+                        <input type="hidden"  ng-model="ctrl.unit.id" />
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <label class="col-md-2 control-lable" for="lastname">Местоположение</label>
@@ -141,7 +144,7 @@
                     <thead>
                         <tr>
                             <th>Местоположение</th>
-                            <th>Наименование</th>
+                            <th>Название</th>
                             
                             <th width="20%"></th>
                         </tr>
@@ -156,7 +159,7 @@
                                         class="btn btn-success custom-width"
                                         style=" width: 90px !important;">Изменить</button>  
                                 <button type="button" 
-                                        ng-click="ctrl.deleteEmployee(e)" 
+                                        ng-click="ctrl.deleteU(e)" 
                                         class="btn btn-danger custom-width"
                                         style=" width: 90px !important;">Удалить</button>
                             </td>
@@ -166,15 +169,7 @@
             </div>
         </div>
     </div>
-        
-    
-                
-                
           
-     
-        
-        
-        
          <script src="resources/js/app/hotels-app.js"></script>
         <script src="resources/js/service/hotels-service.js"></script>
         <script src="resources/js/controller/hotels-controller.js"></script> 

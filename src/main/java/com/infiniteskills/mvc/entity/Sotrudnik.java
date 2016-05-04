@@ -58,7 +58,6 @@ public class Sotrudnik implements Serializable {
     @Column(name = "DR")
     @Temporal(TemporalType.DATE)
     private Date dr;
-    @JsonProperty(NAME_PROPERTY)
     @Column(name = "FIO")
     private String fio;
     @Column(name = "GRAG")

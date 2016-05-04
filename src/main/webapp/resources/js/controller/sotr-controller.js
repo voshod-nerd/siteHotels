@@ -4,14 +4,16 @@ App.controller('Controller', ['$scope', 'Servics',
     function ($scope, Servics) {
         var self = this;
 
-        self.vis = 'none';
-        self.nameh = '';
-        self.loc = '';
-
         self.unit = {
             id: null,
-            location: '',
-            name: '',
+            dr: '',
+            fio: '',
+            grag:'',
+            num:'',
+            ser:'',
+            iddolgnost:null,
+            iduser:null
+            
         };
 
 
@@ -69,25 +71,17 @@ App.controller('Controller', ['$scope', 'Servics',
         };
 
 
-        self.addU = function ()
-        {
-            self.unit.name = self.nameh;
-            self.unit.location = self.loc;
-            self.createU(self.unit);
-
-
-
-        };
+        
 
         self.edit = function (unit) {
             console.log('Employee name to be edited', unit);
-            /*var department = (employee.department !== null) ?
-             JSON.stringify(employee.department) : null;
-             var post = (employee.post !== null) ?
+            var dolg = (unit.iddolgnost !== null) ?
+             JSON.stringify(unit.iddolgnost) : null;
+             /*var post = (employee.post !== null) ?
              JSON.stringify(employee.post) : null;
-             self.employee = employee;
-             */
-            self.unit=unit;
+            */
+             self.unit=unit;
+             self.unit.iddolgnost = dolg;
             //self.unit.location = unit.location;
             //;
             //self.unit.name = unit.name;
@@ -96,11 +90,17 @@ App.controller('Controller', ['$scope', 'Servics',
 
 
         self.reset = function () {
-            self.unit = {
-                id: null,
-                location: '',
-                name: '',
-            };
+             self.unit = {
+            id: null,
+            dr: '',
+            fio: '',
+            grag:'',
+            num:'',
+            ser:'',
+            iddolgnost:null,
+            iduser:null
+            
+        };
             $scope.myForm.$setPristine(); //reset Form
         };
 
@@ -113,6 +113,11 @@ App.controller('Controller', ['$scope', 'Servics',
              */
             //self.unit.location = department;
             //self.unit.name = post;
+            
+            var iddolg = self.unit.iddolgnost !== null ?
+            JSON.parse(self.unit.iddolgnost) : null;
+            self.unit.iddolgnost=iddolg;
+            
             if (self.unit.id === null) {
                 console.log('Saving New Unit', self.unit);
                 self.createU(self.unit);

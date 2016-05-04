@@ -1,17 +1,18 @@
 'use strict';
 
-App.controller('Controller', ['$scope', 'Servics',
+App.controller('ControllerOrg', ['$scope', 'Servics',
     function ($scope, Servics) {
         var self = this;
 
-        self.vis = 'none';
-        self.nameh = '';
-        self.loc = '';
+       
 
         self.unit = {
             id: null,
-            location: '',
-            name: '',
+            adres: '',
+            fiopredstavitel: '',
+            mail:'',
+            name:'',
+            phone:''
         };
 
 
@@ -69,15 +70,7 @@ App.controller('Controller', ['$scope', 'Servics',
         };
 
 
-        self.addU = function ()
-        {
-            self.unit.name = self.nameh;
-            self.unit.location = self.loc;
-            self.createU(self.unit);
-
-
-
-        };
+        
 
         self.edit = function (unit) {
             console.log('Employee name to be edited', unit);
@@ -97,10 +90,13 @@ App.controller('Controller', ['$scope', 'Servics',
 
         self.reset = function () {
             self.unit = {
-                id: null,
-                location: '',
-                name: '',
-            };
+            id: null,
+            adres: '',
+            fiopredstavitel: '',
+            mail:'',
+            name:'',
+            phone:''
+        };
             $scope.myForm.$setPristine(); //reset Form
         };
 

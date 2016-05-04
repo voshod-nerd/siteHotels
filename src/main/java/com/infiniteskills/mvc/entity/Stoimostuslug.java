@@ -5,6 +5,7 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Collection;
@@ -51,6 +52,7 @@ public class Stoimostuslug implements Serializable {
     @ManyToOne
     private Uslug iduslug;
     @OneToMany(mappedBy = "idstoimostuslig")
+     @JsonIgnore
     private Collection<Reestruslug> reestruslugCollection;
 
     public Stoimostuslug() {

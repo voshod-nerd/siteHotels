@@ -1,22 +1,13 @@
 'use strict';
-
-App.controller('Controller', ['$scope', 'Servics',
-    function ($scope, Servics) {
+App.controller('ControllerD', ['$scope', 'ServicsD',
+    function ($scope, ServicsD) {
         var self = this;
-
-        self.vis = 'none';
-        self.nameh = '';
-        self.loc = '';
 
         self.unit = {
             id: null,
-            location: '',
-            name: '',
+            dolgnost: ''
+            
         };
-
-
-
-
         self.units = [];
         self.showBlock = function () {
             self.vis = 'inline-block';
@@ -24,10 +15,11 @@ App.controller('Controller', ['$scope', 'Servics',
 
 
         self.fetchAllU = function () {
-            Servics.fetchAllU()
+            ServicsD.fetchAllU()
                     .then(
                             function (d) {
                                 self.units = d;
+                                alert('I here');
                                 alert(JSON.stringify(d));
                             },
                             function (errResponse) {
@@ -39,7 +31,7 @@ App.controller('Controller', ['$scope', 'Servics',
         self.fetchAllU();
 
         self.createU = function (unit) {
-            Servics.createU(unit)
+            ServicsD.createU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -49,7 +41,7 @@ App.controller('Controller', ['$scope', 'Servics',
         };
 
         self.updateU = function (unit) {
-            Servics.updateU(unit)
+            ServicsD.updateU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -59,7 +51,7 @@ App.controller('Controller', ['$scope', 'Servics',
         };
 
         self.deleteU = function (unit) {
-            Servics.deleteU(unit)
+            ServicsD.deleteU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -69,16 +61,7 @@ App.controller('Controller', ['$scope', 'Servics',
         };
 
 
-        self.addU = function ()
-        {
-            self.unit.name = self.nameh;
-            self.unit.location = self.loc;
-            self.createU(self.unit);
-
-
-
-        };
-
+       
         self.edit = function (unit) {
             console.log('Employee name to be edited', unit);
             /*var department = (employee.department !== null) ?
@@ -98,8 +81,8 @@ App.controller('Controller', ['$scope', 'Servics',
         self.reset = function () {
             self.unit = {
                 id: null,
-                location: '',
-                name: '',
+                dolgnost: '',
+               
             };
             $scope.myForm.$setPristine(); //reset Form
         };

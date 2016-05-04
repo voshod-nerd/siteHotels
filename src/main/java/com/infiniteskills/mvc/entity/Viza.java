@@ -48,7 +48,7 @@ public class Viza implements Serializable {
     @Column(name = "END")
     @Temporal(TemporalType.DATE)
     private Date end;
-    @Column(name = "Id\u0441lient")
+    @Column(name = "IdÑlient")
     private Integer idñlient;
     @Column(name = "NUMBER")
     private String number;

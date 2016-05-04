@@ -1,13 +1,13 @@
 'use strict';
 
-App.factory('Servics', ['$http', '$q', function ($http, $q) {
+App.factory('ServicsD', ['$http', '$q', function ($http, $q) {
 
         self.headers = {};
         self.headers["Content-Type"] = 'application/json';
 
         return { 
             fetchAllU: function () {
-                return $http.get('/vc/resthotel')
+                return $http.get('/vc/restdolgnost')
                         .then(
                                 function (response) {
                                     return response.data;
@@ -19,7 +19,7 @@ App.factory('Servics', ['$http', '$q', function ($http, $q) {
                         );
             },
             createU: function (unit) {
-                return $http.post('/vc/resthotel/item',
+                return $http.post('/vc/restdolgnost/item',
                         JSON.stringify(unit))
                         .then(
                                 function (response) {
@@ -32,7 +32,7 @@ App.factory('Servics', ['$http', '$q', function ($http, $q) {
                         );
             },
             updateU: function (unit) {
-                return $http.put('/vc/resthotel/item',
+                return $http.put('/vc/restdolgnost/item',
                         JSON.stringify(unit))
                         .then(
                                 function (response) {
@@ -46,7 +46,7 @@ App.factory('Servics', ['$http', '$q', function ($http, $q) {
             },
             deleteU: function (unit) {
                 return $http({method: 'DELETE',
-                    url: '/vc/resthotel/item/',
+                    url: '/vc/restdolgnost/item/',
                     data: JSON.stringify(unit),
                     headers: self.headers})
                         .then(
@@ -61,5 +61,7 @@ App.factory('Servics', ['$http', '$q', function ($http, $q) {
             }
         };
     }]);
+
+
 
 

@@ -5,11 +5,7 @@
  */
 package com.infiniteskills.mvc.entity;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -21,12 +17,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -42,18 +36,22 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sotrudnik.findByFio", query = "SELECT s FROM Sotrudnik s WHERE s.fio = :fio"),
     @NamedQuery(name = "Sotrudnik.findByGrag", query = "SELECT s FROM Sotrudnik s WHERE s.grag = :grag"),
     @NamedQuery(name = "Sotrudnik.findByNum", query = "SELECT s FROM Sotrudnik s WHERE s.num = :num"),
-    @NamedQuery(name = "Sotrudnik.findBySer", query = "SELECT s FROM Sotrudnik s WHERE s.ser = :ser")})
+    @NamedQuery(name = "Sotrudnik.findBySer", query = "SELECT s FROM Sotrudnik s WHERE s.ser = :ser"),
+    @NamedQuery(name = "Sotrudnik.findByMr", query = "SELECT s FROM Sotrudnik s WHERE s.mr = :mr"),
+    @NamedQuery(name = "Sotrudnik.findByDoclich", query = "SELECT s FROM Sotrudnik s WHERE s.doclich = :doclich"),
+    @NamedQuery(name = "Sotrudnik.findByKemvidan", query = "SELECT s FROM Sotrudnik s WHERE s.kemvidan = :kemvidan"),
+    @NamedQuery(name = "Sotrudnik.findByAdres", query = "SELECT s FROM Sotrudnik s WHERE s.adres = :adres"),
+    @NamedQuery(name = "Sotrudnik.findByPhone", query = "SELECT s FROM Sotrudnik s WHERE s.phone = :phone"),
+    @NamedQuery(name = "Sotrudnik.findByEducation", query = "SELECT s FROM Sotrudnik s WHERE s.education = :education"),
+    @NamedQuery(name = "Sotrudnik.findByKoldet", query = "SELECT s FROM Sotrudnik s WHERE s.koldet = :koldet"),
+    @NamedQuery(name = "Sotrudnik.findByKogdavidan", query = "SELECT s FROM Sotrudnik s WHERE s.kogdavidan = :kogdavidan")})
 public class Sotrudnik implements Serializable {
-    
-    public static final String ID_PROPERTY = "id";
-    public static final String NAME_PROPERTY = "name";
-    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
-    @JsonProperty(ID_PROPERTY)
     private Integer id;
     @Column(name = "DR")
     @Temporal(TemporalType.DATE)
@@ -66,9 +64,31 @@ public class Sotrudnik implements Serializable {
     private String num;
     @Column(name = "SER")
     private String ser;
-    @OneToMany(mappedBy = "idsotr")
-    @JsonIgnore
-    private Collection<Zayvka> zayvkaCollection;
+    @Basic(optional = false)
+    @Column(name = "MR")
+    private String mr;
+    @Basic(optional = false)
+    @Column(name = "DOCLICH")
+    private String doclich;
+    @Basic(optional = false)
+    @Column(name = "KEMVIDAN")
+    private String kemvidan;
+    @Basic(optional = false)
+    @Column(name = "ADRES")
+    private String adres;
+    @Basic(optional = false)
+    @Column(name = "PHONE")
+    private String phone;
+    @Basic(optional = false)
+    @Column(name = "EDUCATION")
+    private String education;
+    @Basic(optional = false)
+    @Column(name = "KOLDET")
+    private int koldet;
+    @Basic(optional = false)
+    @Column(name = "KOGDAVIDAN")
+    @Temporal(TemporalType.DATE)
+    private Date kogdavidan;
     @JoinColumn(name = "IDDOLGNOST", referencedColumnName = "ID")
     @ManyToOne
     private Dolgnost iddolgnost;
@@ -81,6 +101,18 @@ public class Sotrudnik implements Serializable {
 
     public Sotrudnik(Integer id) {
         this.id = id;
+    }
+
+    public Sotrudnik(Integer id, String mr, String doclich, String kemvidan, String adres, String phone, String education, int koldet, Date kogdavidan) {
+        this.id = id;
+        this.mr = mr;
+        this.doclich = doclich;
+        this.kemvidan = kemvidan;
+        this.adres = adres;
+        this.phone = phone;
+        this.education = education;
+        this.koldet = koldet;
+        this.kogdavidan = kogdavidan;
     }
 
     public Integer getId() {
@@ -131,13 +163,68 @@ public class Sotrudnik implements Serializable {
         this.ser = ser;
     }
 
-    @XmlTransient
-    public Collection<Zayvka> getZayvkaCollection() {
-        return zayvkaCollection;
+    public String getMr() {
+        return mr;
     }
 
-    public void setZayvkaCollection(Collection<Zayvka> zayvkaCollection) {
-        this.zayvkaCollection = zayvkaCollection;
+    public void setMr(String mr) {
+        this.mr = mr;
+    }
+
+    public String getDoclich() {
+        return doclich;
+    }
+
+    public void setDoclich(String doclich) {
+        this.doclich = doclich;
+    }
+
+    public String getKemvidan() {
+        return kemvidan;
+    }
+
+    public void setKemvidan(String kemvidan) {
+        this.kemvidan = kemvidan;
+    }
+
+    public String getAdres() {
+        return adres;
+    }
+
+    public void setAdres(String adres) {
+        this.adres = adres;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public int getKoldet() {
+        return koldet;
+    }
+
+    public void setKoldet(int koldet) {
+        this.koldet = koldet;
+    }
+
+    public Date getKogdavidan() {
+        return kogdavidan;
+    }
+
+    public void setKogdavidan(Date kogdavidan) {
+        this.kogdavidan = kogdavidan;
     }
 
     public Dolgnost getIddolgnost() {

@@ -1,7 +1,7 @@
 'use strict';
 
-App.controller('ControllerOrg', ['$scope', 'Servics',
-    function ($scope, Servics) {
+App.controller('ControllerOrg', ['$scope', 'ServicsOrg',
+    function ($scope, ServicsOrg) {
         var self = this;
 
        
@@ -25,7 +25,7 @@ App.controller('ControllerOrg', ['$scope', 'Servics',
 
 
         self.fetchAllU = function () {
-            Servics.fetchAllU()
+            ServicsOrg.fetchAllU()
                     .then(
                             function (d) {
                                 self.units = d;
@@ -40,7 +40,7 @@ App.controller('ControllerOrg', ['$scope', 'Servics',
         self.fetchAllU();
 
         self.createU = function (unit) {
-            Servics.createU(unit)
+            ServicsOrg.createU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -50,7 +50,7 @@ App.controller('ControllerOrg', ['$scope', 'Servics',
         };
 
         self.updateU = function (unit) {
-            Servics.updateU(unit)
+            ServicsOrg.updateU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -60,7 +60,7 @@ App.controller('ControllerOrg', ['$scope', 'Servics',
         };
 
         self.deleteU = function (unit) {
-            Servics.deleteU(unit)
+            ServicsOrg.deleteU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {

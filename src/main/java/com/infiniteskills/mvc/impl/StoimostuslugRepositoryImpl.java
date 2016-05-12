@@ -26,11 +26,11 @@ public class StoimostuslugRepositoryImpl implements StoimostUslugRepository {
     private EntityManager em;
     
     public List< Stoimostuslug> findAll() {
-      return em.createNamedQuery(" Stoimostuslug.findAll").getResultList();
+      return em.createNamedQuery("Stoimostuslug.findAll").getResultList();
     }
 
     public List< Stoimostuslug> findAllWithDetails() {
-        return em.createNamedQuery(" Stoimostuslug.findAllWithDetail").getResultList();
+        return em.createNamedQuery("Stoimostuslug.findAllWithDetail").getResultList();
     }
 
     public  Stoimostuslug save( Stoimostuslug nomer) {

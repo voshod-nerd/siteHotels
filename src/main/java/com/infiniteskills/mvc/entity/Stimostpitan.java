@@ -5,9 +5,7 @@
  */
 package com.infiniteskills.mvc.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,10 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,7 +28,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Stimostpitan.findAll", query = "SELECT s FROM Stimostpitan s"),
-    @NamedQuery(name = "Stimostpitan.findById", query = "SELECT s FROM Stimostpitan s WHERE s.id = :id")})
+    @NamedQuery(name = "Stimostpitan.findById", query = "SELECT s FROM Stimostpitan s WHERE s.id = :id"),
+    @NamedQuery(name = "Stimostpitan.findBySum", query = "SELECT s FROM Stimostpitan s WHERE s.sum = :sum")})
 public class Stimostpitan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,15 +38,15 @@ public class Stimostpitan implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Basic(optional = false)
+    @Column(name = "sum")
+    private long sum;
     @JoinColumn(name = "idtarif", referencedColumnName = "id")
     @ManyToOne
     private Tarifz idtarif;
     @JoinColumn(name = "idpitanie", referencedColumnName = "id")
     @ManyToOne
     private Pitanie idpitanie;
-    @OneToMany(mappedBy = "idstoimostpit")
-     @JsonIgnore
-    private Collection<Progivanie> progivanieCollection;
 
     public Stimostpitan() {
     }
@@ -58,12 +55,25 @@ public class Stimostpitan implements Serializable {
         this.id = id;
     }
 
+    public Stimostpitan(Integer id, long sum) {
+        this.id = id;
+        this.sum = sum;
+    }
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public long getSum() {
+        return sum;
+    }
+
+    public void setSum(long sum) {
+        this.sum = sum;
     }
 
     public Tarifz getIdtarif() {
@@ -80,15 +90,6 @@ public class Stimostpitan implements Serializable {
 
     public void setIdpitanie(Pitanie idpitanie) {
         this.idpitanie = idpitanie;
-    }
-
-    @XmlTransient
-    public Collection<Progivanie> getProgivanieCollection() {
-        return progivanieCollection;
-    }
-
-    public void setProgivanieCollection(Collection<Progivanie> progivanieCollection) {
-        this.progivanieCollection = progivanieCollection;
     }
 
     @Override

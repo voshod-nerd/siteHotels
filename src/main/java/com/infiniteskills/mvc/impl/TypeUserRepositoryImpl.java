@@ -27,11 +27,11 @@ public class TypeUserRepositoryImpl implements TypeUserRepository {
     private EntityManager em;
     
     public List<Typeuser> findAll() {
-      return em.createNamedQuery("Bron.findAll").getResultList();
+      return em.createNamedQuery("Typeuser.findAll").getResultList();
     }
 
     public List<Typeuser> findAllWithDetails() {
-        return em.createNamedQuery("Bron.findAllWithDetail").getResultList();
+        return em.createNamedQuery("Typeuser.findAllWithDetail").getResultList();
     }
 
     public Typeuser save(Typeuser nomer) {

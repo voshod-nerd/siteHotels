@@ -35,19 +35,23 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="" id="themes">Cписок дейсвий<span class="caret"></span></a>
                             <ul class="dropdown-menu" aria-labelledby="themes">
-                        <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
-                        <li><a href="hotels" >Редактирование списка отелей</a></li>
-                        <li><a href="sotrudnik" >Редактирование личных карточек сотрудников</a></li>
-                        <li><a href="organiz" >Редактирование списка организаций</a></li>
-                        <li><a href="hotel" >Редактирование списка типов заявок</a></li>
-                        <li><a href="hotel" >Редактирование списка типов питания</a></li>
-                        <li><a href="hotel" >Редактирование списка должностей</a></li>
-                        <li><a href="hotel" >Редактирование списка работ</a></li>
-                        <li><a href="hotel" >Редактирование списка организаций</a></li>
-                        <li><a href="hotel" >Редактирование списка программ</a></li>
-                        <li><a href="hotel" >Реестр ремонтныъ работ</a></li>
-                        <li><a href="hotel" >Редактирование стоимости услуг</a></li>
-                        <li><a href="hotel" >Реестр стоимость номеров</a></li>
+                                <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
+                                <li><a href="hotels" >Редактирование списка отелей</a></li>
+                                <li><a href="sotrudnik" >Редактирование личных карточек сотрудников</a></li>
+                                <li><a href="organiz" >Редактирование списка организаций</a></li>
+                                <li><a href="programs" >Редактирование программ</a></li>
+                                <li><a href="typezav" >Редактирование типов заявки</a></li>
+                                <li><a href="typenomerhot" >Редактирование типов номеров</a></li>
+                                <li><a href="tarif" >Редактирование тарифов</a></li>
+                                <li><a href="uslug" >Редактирование дополнительных услуг</a></li>
+                                <li><a href="pitan" >Редактирование видов питания</a></li>
+                                <li><a href="typeuser" >Редактирование типов пользователей</a></li>
+                                <li><a href="dolgnost" >Редактирование должностей</a></li>
+                                <li><a href="stoimostpitan" >Редактирование стоимости питания</a></li>
+                                <li><a href="stoimostnomer" >Редактирование стоимости типов номеров</a></li>
+                                <li><a href="stoimostuslug" >Редактирование стоимости услуг</a></li>
+
+
                                 <li class="divider"></li>
                             </ul>
                         </li>
@@ -74,21 +78,10 @@
                 <div class="col-md-10">
                     <h3>Cписок доступных опций </h3>
                     <ul>
-                       <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
-                        <li><a href="hotels" >Редактирование списка отелей</a></li>
-                        <li><a href="sotrudnik" >Редактирование личных карточек сотрудников</a></li>
-                        <li><a href="organiz" >Редактирование списка организаций</a></li>
-                        <li><a href="hotel" >Редактирование списка типов заявок</a></li>
-                        <li><a href="hotel" >Редактирование списка типов питания</a></li>
-                        <li><a href="hotel" >Редактирование списка должностей</a></li>
-                        <li><a href="hotel" >Редактирование списка работ</a></li>
-                        <li><a href="hotel" >Редактирование списка организаций</a></li>
-                        <li><a href="hotel" >Редактирование списка программ</a></li>
-                        <li><a href="hotel" >Реестр ремонтныъ работ</a></li>
-                        <li><a href="hotel" >Редактирование стоимости услуг</a></li>
-                        <li><a href="hotel" >Реестр стоимость номеров</a></li>
+                        <li> <a href="orders" >Подача и редактирование списка заявок</a></li>
+
                     </ul>
-                   
+
                     <h3>Cписок реестров</h3>
                     <ul>
                         <li> <a href="orders" >Оказанные услуги клиентам</a></li>

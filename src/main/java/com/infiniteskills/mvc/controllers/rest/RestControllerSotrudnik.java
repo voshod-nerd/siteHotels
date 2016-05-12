@@ -34,7 +34,7 @@ public class RestControllerSotrudnik {
     }
      
     
-     @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<Sotrudnik> getUnitList() {
         return uService.findAll();
     }

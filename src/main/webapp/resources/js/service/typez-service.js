@@ -1,13 +1,13 @@
 'use strict';
 
-App.factory('ServicsS', ['$http', '$q', function ($http, $q) {
+App.factory('ServicsTZ', ['$http', '$q', function ($http, $q) {
 
         self.headers = {};
         self.headers["Content-Type"] = 'application/json';
 
         return { 
             fetchAllU: function () {
-                return $http.get('/vc/restsotrudnik')
+                return $http.get('/vc/resttypezav')
                         .then(
                                 function (response) {
                                     return response.data;
@@ -19,7 +19,7 @@ App.factory('ServicsS', ['$http', '$q', function ($http, $q) {
                         );
             },
             createU: function (unit) {
-                return $http.post('/vc/restsotrudnik/item',
+                return $http.post('/vc/resttypezav/item',
                         JSON.stringify(unit))
                         .then(
                                 function (response) {
@@ -32,7 +32,7 @@ App.factory('ServicsS', ['$http', '$q', function ($http, $q) {
                         );
             },
             updateU: function (unit) {
-                return $http.put('/vc/restsotrudnik/item',
+                return $http.put('/vc/resttypezav/item',
                         JSON.stringify(unit))
                         .then(
                                 function (response) {
@@ -46,7 +46,7 @@ App.factory('ServicsS', ['$http', '$q', function ($http, $q) {
             },
             deleteU: function (unit) {
                 return $http({method: 'DELETE',
-                    url: '/vc/restsotrudnik/item/',
+                    url: '/vc/resttypezav/item/',
                     data: JSON.stringify(unit),
                     headers: self.headers})
                         .then(

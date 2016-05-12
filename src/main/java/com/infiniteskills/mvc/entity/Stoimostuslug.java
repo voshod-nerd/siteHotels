@@ -52,7 +52,7 @@ public class Stoimostuslug implements Serializable {
     @ManyToOne
     private Uslug iduslug;
     @OneToMany(mappedBy = "idstoimostuslig")
-     @JsonIgnore
+    @JsonIgnore
     private Collection<Reestruslug> reestruslugCollection;
 
     public Stoimostuslug() {

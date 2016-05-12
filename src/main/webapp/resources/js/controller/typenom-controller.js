@@ -1,26 +1,16 @@
 'use strict';
 
-App.controller('ControllerS', ['$scope', 'ServicsS',
-    function ($scope, ServicsS) {
+App.controller('ControllerTN', ['$scope', 'ServicsTN',
+    function ($scope, ServicsTN) {
         var self = this;
+
+       
 
         self.unit = {
             id: null,
-            dr: '',
-            fio: '',
-            grag:'',
-            num:'',
-            ser:'',
-            iddolgnost:null,
-            iduser:null,
-            mr:'',
-            doclich:'',
-            kemvidan:'',
-            adres:'',
-            phone:'',
-            education:'',
-            koldet:'',
-            kogdavidan:''
+            mest: '',
+            type: ''
+         
         };
 
 
@@ -31,7 +21,7 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
 
 
         self.fetchAllU = function () {
-            ServicsS.fetchAllU()
+            ServicsTN.fetchAllU()
                     .then(
                             function (d) {
                                 self.units = d;
@@ -46,7 +36,7 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         self.fetchAllU();
 
         self.createU = function (unit) {
-            ServicsS.createU(unit)
+            ServicsTN.createU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -56,7 +46,7 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         };
 
         self.updateU = function (unit) {
-            ServicsS.updateU(unit)
+           ServicsTN.updateU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -66,7 +56,7 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         };
 
         self.deleteU = function (unit) {
-            ServicsS.deleteU(unit)
+           ServicsTN.deleteU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -80,13 +70,13 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
 
         self.edit = function (unit) {
             console.log('Employee name to be edited', unit);
-            var dolg = (unit.iddolgnost !== null) ?
-             JSON.stringify(unit.iddolgnost) : null;
-             /*var post = (employee.post !== null) ?
+            /*var department = (employee.department !== null) ?
+             JSON.stringify(employee.department) : null;
+             var post = (employee.post !== null) ?
              JSON.stringify(employee.post) : null;
-            */
-             self.unit=unit;
-             self.unit.iddolgnost = dolg;
+             self.employee = employee;
+             */
+            self.unit=unit;
             //self.unit.location = unit.location;
             //;
             //self.unit.name = unit.name;
@@ -95,24 +85,10 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
 
 
         self.reset = function () {
-             self.unit = {
+            self.unit = {
             id: null,
-            dr: '',
-            fio: '',
-            grag:'',
-            num:'',
-            ser:'',
-            iddolgnost:null,
-            iduser:null,
-            mr:'',
-            doclich:'',
-            kemvidan:'',
-            adres:'',
-            phone:'',
-            education:'',
-            koldet:'',
-            kogdavidan:''
-            
+            mest: '',
+            type: ''
         };
             $scope.myForm.$setPristine(); //reset Form
         };
@@ -126,11 +102,6 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
              */
             //self.unit.location = department;
             //self.unit.name = post;
-            
-            var iddolg = self.unit.iddolgnost !== null ?
-            JSON.parse(self.unit.iddolgnost) : null;
-            self.unit.iddolgnost=iddolg;
-            
             if (self.unit.id === null) {
                 console.log('Saving New Unit', self.unit);
                 self.createU(self.unit);

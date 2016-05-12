@@ -60,7 +60,7 @@ public class HomeController {
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     public String ordersList(ModelMap model) {
-        
+ 
         List<Hotel> lsHotel = hotelRepository.findAll();
         for (Hotel dept : lsHotel) {
             System.out.println("name " + dept.getName());
@@ -92,5 +92,62 @@ public class HomeController {
      return "corporative/organization";
     }
     
+     @RequestMapping(value = "/typezav", method = RequestMethod.GET)
+    public String pageTypeZav(ModelMap model) {
+     return "corporative/typezav";
+    }
     
+     @RequestMapping(value = "/typenomerhot", method = RequestMethod.GET)
+    public String pageTypeNomer(ModelMap model) {
+     return "corporative/typenomerhot";
+    }
+    
+   
+     @RequestMapping(value = "/tarif", method = RequestMethod.GET)
+    public String pageTarif(ModelMap model) {
+     return "corporative/tarif";
+    }
+    
+     @RequestMapping(value = "/uslug", method = RequestMethod.GET)
+    public String pageUslug(ModelMap model) {
+     return "corporative/uslug";
+    }
+    
+      @RequestMapping(value = "/programs", method = RequestMethod.GET)
+    public String pagePrograms(ModelMap model) {
+     return "corporative/programs";
+    }
+    
+      @RequestMapping(value = "/pitan", method = RequestMethod.GET)
+    public String pagePitanie(ModelMap model) {
+     return "corporative/pitan";
+    }
+    
+      @RequestMapping(value = "/typeuser", method = RequestMethod.GET)
+    public String pageTypeUser(ModelMap model) {
+     return "corporative/typeuser";
+    }
+    
+    
+    @RequestMapping(value = "/dolgnost", method = RequestMethod.GET)
+    public String pageDolgnost(ModelMap model) {
+     return "corporative/dolgnost";
+    }
+    
+    @RequestMapping(value = "/stoimostpitan", method = RequestMethod.GET)
+    public String pageStoimPitan(ModelMap model) {
+     return "corporative/stoimostpitan";
+    }
+    
+     @RequestMapping(value = "/stoimostnomer", method = RequestMethod.GET)
+    public String pageStoimNomer(ModelMap model) {
+     return "corporative/stoimostnomer";
+    }
+    
+      @RequestMapping(value = "/stoimostuslug", method = RequestMethod.GET)
+    public String pageStoimUslug(ModelMap model) {
+     return "corporative/stoimostuslug";
+    }
+    
+   
 }

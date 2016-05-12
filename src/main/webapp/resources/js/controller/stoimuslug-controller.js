@@ -1,37 +1,23 @@
 'use strict';
 
-App.controller('ControllerS', ['$scope', 'ServicsS',
-    function ($scope, ServicsS) {
+App.controller('ControllerStoimUslug', ['$scope', 'ServicsStoimostUslug',
+    function ($scope, ServicsStoimostUslug) {
         var self = this;
+
+       
 
         self.unit = {
             id: null,
-            dr: '',
-            fio: '',
-            grag:'',
-            num:'',
-            ser:'',
-            iddolgnost:null,
-            iduser:null,
-            mr:'',
-            doclich:'',
-            kemvidan:'',
-            adres:'',
-            phone:'',
-            education:'',
-            koldet:'',
-            kogdavidan:''
+            idtarif:null,
+            idtuslug:null,
+            summa:''
+          
         };
-
-
-
-
         self.units = [];
        
 
-
         self.fetchAllU = function () {
-            ServicsS.fetchAllU()
+            ServicsStoimostUslug.fetchAllU()
                     .then(
                             function (d) {
                                 self.units = d;
@@ -46,7 +32,7 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         self.fetchAllU();
 
         self.createU = function (unit) {
-            ServicsS.createU(unit)
+           ServicsStoimostUslug.createU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -56,7 +42,7 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         };
 
         self.updateU = function (unit) {
-            ServicsS.updateU(unit)
+           ServicsStoimostUslug.updateU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -66,7 +52,7 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         };
 
         self.deleteU = function (unit) {
-            ServicsS.deleteU(unit)
+           ServicsStoimostUslug.deleteU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -79,63 +65,44 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         
 
         self.edit = function (unit) {
-            console.log('Employee name to be edited', unit);
-            var dolg = (unit.iddolgnost !== null) ?
-             JSON.stringify(unit.iddolgnost) : null;
-             /*var post = (employee.post !== null) ?
-             JSON.stringify(employee.post) : null;
-            */
-             self.unit=unit;
-             self.unit.iddolgnost = dolg;
-            //self.unit.location = unit.location;
-            //;
-            //self.unit.name = unit.name;
+            console.log('Unit name to be edited', unit);
+             var tar = (unit.idtarif !== null) ?
+             JSON.stringify(unit.idtarif) : null;
+             var pit = (unit.iduslug !== null) ?
+             JSON.stringify(unit.iduslug) : null;
+            
+            
+            self.unit=unit;
+            self.unit.idtarif = tar;
+            self.unit.iduslug = pit;
             $scope.myForm.$setDirty();
         };
 
 
         self.reset = function () {
-             self.unit = {
+            self.unit = {
             id: null,
-            dr: '',
-            fio: '',
-            grag:'',
-            num:'',
-            ser:'',
-            iddolgnost:null,
-            iduser:null,
-            mr:'',
-            doclich:'',
-            kemvidan:'',
-            adres:'',
-            phone:'',
-            education:'',
-            koldet:'',
-            kogdavidan:''
-            
+            idtarif:null,
+            idtuslug:null,
+            summa:''
         };
             $scope.myForm.$setPristine(); //reset Form
         };
 
         self.submit = function () {
-            // console.log('department - ' + self.employee.department);
-            /* var department = self.employee.department !== null ?
-             JSON.parse(self.employee.department) : null;
-             var post = self.employee.post !== null ?
-             JSON.parse(self.employee.post) : null;
-             */
-            //self.unit.location = department;
-            //self.unit.name = post;
-            
-            var iddolg = self.unit.iddolgnost !== null ?
-            JSON.parse(self.unit.iddolgnost) : null;
-            self.unit.iddolgnost=iddolg;
-            
+           
+            var tar = self.unit.idtarif !== null ?
+            JSON.parse(self.unit.idtarif) : null;
+            var pit = self.unit.iduslug !== null ?
+            JSON.parse(self.unit.iduslug) : null;
+            alert(tar);
+            self.unit.idtarif = tar;
+            self.unit.iduslug = pit; 
             if (self.unit.id === null) {
                 console.log('Saving New Unit', self.unit);
                 self.createU(self.unit);
             } else {
-                self.updateU(self.U);
+                self.updateU(self.unit);
                 console.log('Unit updated to  ', self.unit);
             }
             self.reset();

@@ -20,7 +20,7 @@ public interface SotrudnikRepository {
     Sotrudnik save(Sotrudnik post);
 
     void delete(Sotrudnik post);
-     Sotrudnik update(Sotrudnik rab);
+    Sotrudnik update(Sotrudnik rab);
 
     Sotrudnik create(Sotrudnik rab);
 }

@@ -26,11 +26,11 @@ public class PitanieRepositoryImpl implements PitanieRepository {
     private EntityManager em;
     
     public List<Pitanie> findAll() {
-      return em.createNamedQuery("Zayvka.findAll").getResultList();
+      return em.createNamedQuery("Pitanie.findAll").getResultList();
     }
 
     public List<Pitanie> findAllWithDetails() {
-        return em.createNamedQuery("Zayvka.findAllWithDetail").getResultList();
+        return em.createNamedQuery("Pitanie.findAllWithDetail").getResultList();
     }
 
     public Pitanie save(Pitanie nomer) {

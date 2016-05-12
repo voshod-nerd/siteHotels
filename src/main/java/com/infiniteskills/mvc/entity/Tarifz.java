@@ -43,13 +43,8 @@ public class Tarifz implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "idtarif")
-     @JsonIgnore
-    private Collection<Stimostpitan> stimostpitanCollection;
-    @OneToMany(mappedBy = "idtarif")
-    private Collection<Stoimostuslug> stoimostuslugCollection;
-    @OneToMany(mappedBy = "idtarif")
-     @JsonIgnore
-    private Collection<Program> programCollection;
+    @JsonIgnore
+    private Collection<Stoimostnomera> stoimostnomeraCollection;
 
     public Tarifz() {
     }
@@ -75,30 +70,12 @@ public class Tarifz implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Stimostpitan> getStimostpitanCollection() {
-        return stimostpitanCollection;
+    public Collection<Stoimostnomera> getStoimostnomeraCollection() {
+        return stoimostnomeraCollection;
     }
 
-    public void setStimostpitanCollection(Collection<Stimostpitan> stimostpitanCollection) {
-        this.stimostpitanCollection = stimostpitanCollection;
-    }
-
-    @XmlTransient
-    public Collection<Stoimostuslug> getStoimostuslugCollection() {
-        return stoimostuslugCollection;
-    }
-
-    public void setStoimostuslugCollection(Collection<Stoimostuslug> stoimostuslugCollection) {
-        this.stoimostuslugCollection = stoimostuslugCollection;
-    }
-
-    @XmlTransient
-    public Collection<Program> getProgramCollection() {
-        return programCollection;
-    }
-
-    public void setProgramCollection(Collection<Program> programCollection) {
-        this.programCollection = programCollection;
+    public void setStoimostnomeraCollection(Collection<Stoimostnomera> stoimostnomeraCollection) {
+        this.stoimostnomeraCollection = stoimostnomeraCollection;
     }
 
     @Override

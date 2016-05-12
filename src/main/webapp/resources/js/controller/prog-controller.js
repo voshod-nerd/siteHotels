@@ -1,37 +1,28 @@
 'use strict';
 
-App.controller('ControllerS', ['$scope', 'ServicsS',
-    function ($scope, ServicsS) {
+App.controller('ControllerProg', ['$scope', 'ServicsProg',
+    function ($scope, ServicsProg) {
         var self = this;
 
         self.unit = {
             id: null,
-            dr: '',
-            fio: '',
-            grag:'',
-            num:'',
-            ser:'',
-            iddolgnost:null,
-            iduser:null,
-            mr:'',
-            doclich:'',
-            kemvidan:'',
-            adres:'',
-            phone:'',
-            education:'',
-            koldet:'',
-            kogdavidan:''
+            dateb: null,
+            dateend:null,
+            name: '',
+            idorganization: null,
+            idtarif: null
+
         };
 
 
 
 
         self.units = [];
-       
+
 
 
         self.fetchAllU = function () {
-            ServicsS.fetchAllU()
+            ServicsProg.fetchAllU()
                     .then(
                             function (d) {
                                 self.units = d;
@@ -46,7 +37,7 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         self.fetchAllU();
 
         self.createU = function (unit) {
-            ServicsS.createU(unit)
+            ServicsProg.createU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -56,7 +47,7 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         };
 
         self.updateU = function (unit) {
-            ServicsS.updateU(unit)
+            ServicsProg.updateU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -66,7 +57,7 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         };
 
         self.deleteU = function (unit) {
-            ServicsS.deleteU(unit)
+            ServicsProg.deleteU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -76,44 +67,39 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
         };
 
 
-        
+
 
         self.edit = function (unit) {
-            console.log('Employee name to be edited', unit);
-            var dolg = (unit.iddolgnost !== null) ?
-             JSON.stringify(unit.iddolgnost) : null;
-             /*var post = (employee.post !== null) ?
-             JSON.stringify(employee.post) : null;
-            */
-             self.unit=unit;
-             self.unit.iddolgnost = dolg;
-            //self.unit.location = unit.location;
-            //;
-            //self.unit.name = unit.name;
+            console.log('Unit name to be edited', unit);
+            var org = (unit.idorganization !== null) ?
+                    JSON.stringify(unit.idorganization) : null;
+            var tar = (unit.idtarif !== null) ?
+                    JSON.stringify(unit.idtarif) : null;
+
+            self.unit = unit;
+            
+            self.unit.dateb=new Date(unit.dateb);
+            self.unit.dateend=new Date(unit.dateend);
+            
+            self.unit.idorganization = org;
+            self.unit.idtarif = tar;
+
+
             $scope.myForm.$setDirty();
         };
 
 
         self.reset = function () {
-             self.unit = {
-            id: null,
-            dr: '',
-            fio: '',
-            grag:'',
-            num:'',
-            ser:'',
-            iddolgnost:null,
-            iduser:null,
-            mr:'',
-            doclich:'',
-            kemvidan:'',
-            adres:'',
-            phone:'',
-            education:'',
-            koldet:'',
-            kogdavidan:''
-            
-        };
+            self.unit = {
+                id: null,
+                dateb: '',
+                dateend: '',
+                name: '',
+                idorganization: null,
+                idtarif: null
+
+
+            };
             $scope.myForm.$setPristine(); //reset Form
         };
 
@@ -126,16 +112,26 @@ App.controller('ControllerS', ['$scope', 'ServicsS',
              */
             //self.unit.location = department;
             //self.unit.name = post;
+
+            var org = (self.unit.idorganization !== null) ?
+                    JSON.stringify(self.unit.idorganization) : null;
+            var tar = (self.unit.idtarif !== null) ?
+                    JSON.stringify(self.unit.idtarif) : null;
+                    
+            self.unit.dateb=new Date(self.unit.dateb);
+            self.unit.dateend=new Date(self.unit.dateend);        
+
             
-            var iddolg = self.unit.iddolgnost !== null ?
-            JSON.parse(self.unit.iddolgnost) : null;
-            self.unit.iddolgnost=iddolg;
-            
+            self.unit.idorganization = org;
+            self.unit.idtarif = tar;
+
+
+
             if (self.unit.id === null) {
                 console.log('Saving New Unit', self.unit);
                 self.createU(self.unit);
             } else {
-                self.updateU(self.U);
+                self.updateU(self.unit);
                 console.log('Unit updated to  ', self.unit);
             }
             self.reset();

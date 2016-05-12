@@ -5,10 +5,8 @@
  */
 package com.infiniteskills.mvc.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,10 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -34,7 +30,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Stoimostnomera.findAll", query = "SELECT s FROM Stoimostnomera s"),
     @NamedQuery(name = "Stoimostnomera.findById", query = "SELECT s FROM Stoimostnomera s WHERE s.id = :id"),
-    @NamedQuery(name = "Stoimostnomera.findByIdtarif", query = "SELECT s FROM Stoimostnomera s WHERE s.idtarif = :idtarif"),
     @NamedQuery(name = "Stoimostnomera.findBySumma", query = "SELECT s FROM Stoimostnomera s WHERE s.summa = :summa")})
 public class Stoimostnomera implements Serializable {
 
@@ -44,16 +39,14 @@ public class Stoimostnomera implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "idtarif")
-    private Integer idtarif;
     @Column(name = "summa")
     private BigInteger summa;
     @JoinColumn(name = "idtypenomer", referencedColumnName = "ID")
     @ManyToOne
     private Typenomerhotel idtypenomer;
-    @OneToMany(mappedBy = "idstoimostnomer")
-     @JsonIgnore
-    private Collection<Progivanie> progivanieCollection;
+    @JoinColumn(name = "idtarif", referencedColumnName = "id")
+    @ManyToOne
+    private Tarifz idtarif;
 
     public Stoimostnomera() {
     }
@@ -68,14 +61,6 @@ public class Stoimostnomera implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getIdtarif() {
-        return idtarif;
-    }
-
-    public void setIdtarif(Integer idtarif) {
-        this.idtarif = idtarif;
     }
 
     public BigInteger getSumma() {
@@ -94,13 +79,12 @@ public class Stoimostnomera implements Serializable {
         this.idtypenomer = idtypenomer;
     }
 
-    @XmlTransient
-    public Collection<Progivanie> getProgivanieCollection() {
-        return progivanieCollection;
+    public Tarifz getIdtarif() {
+        return idtarif;
     }
 
-    public void setProgivanieCollection(Collection<Progivanie> progivanieCollection) {
-        this.progivanieCollection = progivanieCollection;
+    public void setIdtarif(Tarifz idtarif) {
+        this.idtarif = idtarif;
     }
 
     @Override

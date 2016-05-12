@@ -53,8 +53,7 @@ public class TarifzRepositoryImpl implements TarifzRepository {
     }
 
     public Tarifz update(Tarifz zav) {
-        //int version = find(zav).getVersion();
-        //Zayvka.setVersion(version);
+       
         return em.merge(zav);
     }
     

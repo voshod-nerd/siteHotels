@@ -6,7 +6,6 @@
 package com.infiniteskills.mvc.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -24,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "TYPEZA")
@@ -34,21 +33,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Typeza.findById", query = "SELECT t FROM Typeza t WHERE t.id = :id"),
     @NamedQuery(name = "Typeza.findByName", query = "SELECT t FROM Typeza t WHERE t.name = :name")})
 public class Typeza implements Serializable {
-    
-    
-    public static final String ID_PROPERTY = "id";
-    public static final String NAME_PROPERTY = "name";
-   
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
-    @JsonProperty(ID_PROPERTY)
     private Integer id;
     @Column(name = "NAME")
-    @JsonProperty(NAME_PROPERTY)
     private String name;
     @OneToMany(mappedBy = "typez")
     @JsonIgnore

@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "ORGANIZATION")
@@ -54,12 +54,12 @@ public class Organization implements Serializable {
     private String name;
     @Column(name = "PHONE")
     private String phone;
-    @JsonIgnore
-    @OneToMany(mappedBy = "idorg")
-    private Collection<Client> clientCollection;
-    @JsonIgnore
     @OneToMany(mappedBy = "idorganization")
+    @JsonIgnore
     private Collection<Program> programCollection;
+    @OneToMany(mappedBy = "idorg")
+    @JsonIgnore
+    private Collection<Client> clientCollection;
 
     public Organization() {
     }
@@ -117,21 +117,21 @@ public class Organization implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Client> getClientCollection() {
-        return clientCollection;
-    }
-
-    public void setClientCollection(Collection<Client> clientCollection) {
-        this.clientCollection = clientCollection;
-    }
-
-    @XmlTransient
     public Collection<Program> getProgramCollection() {
         return programCollection;
     }
 
     public void setProgramCollection(Collection<Program> programCollection) {
         this.programCollection = programCollection;
+    }
+
+    @XmlTransient
+    public Collection<Client> getClientCollection() {
+        return clientCollection;
+    }
+
+    public void setClientCollection(Collection<Client> clientCollection) {
+        this.clientCollection = clientCollection;
     }
 
     @Override

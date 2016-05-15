@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "USER")
@@ -49,13 +49,13 @@ public class User implements Serializable {
     private String password;
     @OneToMany(mappedBy = "iduser")
     @JsonIgnore
+    private Collection<Sotrudnik> sotrudnikCollection;
+    @OneToMany(mappedBy = "iduser")
+    @JsonIgnore
     private Collection<Client> clientCollection;
     @JoinColumn(name = "typeuser", referencedColumnName = "id")
     @ManyToOne
     private Typeuser typeuser;
-    @OneToMany(mappedBy = "iduser")
-    @JsonIgnore
-    private Collection<Sotrudnik> sotrudnikCollection;
 
     public User() {
     }
@@ -89,6 +89,15 @@ public class User implements Serializable {
     }
 
     @XmlTransient
+    public Collection<Sotrudnik> getSotrudnikCollection() {
+        return sotrudnikCollection;
+    }
+
+    public void setSotrudnikCollection(Collection<Sotrudnik> sotrudnikCollection) {
+        this.sotrudnikCollection = sotrudnikCollection;
+    }
+
+    @XmlTransient
     public Collection<Client> getClientCollection() {
         return clientCollection;
     }
@@ -103,15 +112,6 @@ public class User implements Serializable {
 
     public void setTypeuser(Typeuser typeuser) {
         this.typeuser = typeuser;
-    }
-
-    @XmlTransient
-    public Collection<Sotrudnik> getSotrudnikCollection() {
-        return sotrudnikCollection;
-    }
-
-    public void setSotrudnikCollection(Collection<Sotrudnik> sotrudnikCollection) {
-        this.sotrudnikCollection = sotrudnikCollection;
     }
 
     @Override

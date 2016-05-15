@@ -10,8 +10,7 @@ App.controller('ControllerStoimPitan', ['$scope', 'ServicsStoimostPitan',
             id: null,
             idtarif:null,
             idpitanie:null,
-            sum:''
-          
+            sum:'' 
         };
 
 

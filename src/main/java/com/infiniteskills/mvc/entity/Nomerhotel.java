@@ -6,7 +6,6 @@
 package com.infiniteskills.mvc.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -26,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "NOMERHOTEL")
@@ -37,37 +36,32 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Nomerhotel.findByNumber", query = "SELECT n FROM Nomerhotel n WHERE n.number = :number"),
     @NamedQuery(name = "Nomerhotel.findByReady", query = "SELECT n FROM Nomerhotel n WHERE n.ready = :ready")})
 public class Nomerhotel implements Serializable {
-    
-     public static final String ID_PROPERTY = "id";
-    public static final String NAME_PROPERTY = "name";
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
-    @JsonProperty(ID_PROPERTY)
     private Integer id;
     @Column(name = "NUMBER")
-    @JsonProperty(NAME_PROPERTY)
     private Integer number;
     @Column(name = "READY")
     private Boolean ready;
     @OneToMany(mappedBy = "idnomer")
     @JsonIgnore
-    private Collection<Zayvka> zayvkaCollection;
-    @OneToMany(mappedBy = "idnomer")
-    @JsonIgnore
     private Collection<Bron> bronCollection;
-    @OneToMany(mappedBy = "idnomer")
-    @JsonIgnore
-    private Collection<Progivanie> progivanieCollection;
-    @JoinColumn(name = "TYPENOMER", referencedColumnName = "ID")
-    @ManyToOne
-    private Typenomerhotel typenomer;
     @JoinColumn(name = "IDGOSTIN", referencedColumnName = "ID")
     @ManyToOne
     private Hotel idgostin;
+    @JoinColumn(name = "TYPENOMER", referencedColumnName = "ID")
+    @ManyToOne
+    private Typenomerhotel typenomer;
+    @OneToMany(mappedBy = "idnomer")
+    @JsonIgnore
+    private Collection<Zayvka> zayvkaCollection;
+    @OneToMany(mappedBy = "idnomer")
+    @JsonIgnore
+    private Collection<Progivanie> progivanieCollection;
 
     public Nomerhotel() {
     }
@@ -101,15 +95,6 @@ public class Nomerhotel implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Zayvka> getZayvkaCollection() {
-        return zayvkaCollection;
-    }
-
-    public void setZayvkaCollection(Collection<Zayvka> zayvkaCollection) {
-        this.zayvkaCollection = zayvkaCollection;
-    }
-
-    @XmlTransient
     public Collection<Bron> getBronCollection() {
         return bronCollection;
     }
@@ -118,13 +103,12 @@ public class Nomerhotel implements Serializable {
         this.bronCollection = bronCollection;
     }
 
-    @XmlTransient
-    public Collection<Progivanie> getProgivanieCollection() {
-        return progivanieCollection;
+    public Hotel getIdgostin() {
+        return idgostin;
     }
 
-    public void setProgivanieCollection(Collection<Progivanie> progivanieCollection) {
-        this.progivanieCollection = progivanieCollection;
+    public void setIdgostin(Hotel idgostin) {
+        this.idgostin = idgostin;
     }
 
     public Typenomerhotel getTypenomer() {
@@ -135,12 +119,22 @@ public class Nomerhotel implements Serializable {
         this.typenomer = typenomer;
     }
 
-    public Hotel getIdgostin() {
-        return idgostin;
+    @XmlTransient
+    public Collection<Zayvka> getZayvkaCollection() {
+        return zayvkaCollection;
     }
 
-    public void setIdgostin(Hotel idgostin) {
-        this.idgostin = idgostin;
+    public void setZayvkaCollection(Collection<Zayvka> zayvkaCollection) {
+        this.zayvkaCollection = zayvkaCollection;
+    }
+
+    @XmlTransient
+    public Collection<Progivanie> getProgivanieCollection() {
+        return progivanieCollection;
+    }
+
+    public void setProgivanieCollection(Collection<Progivanie> progivanieCollection) {
+        this.progivanieCollection = progivanieCollection;
     }
 
     @Override

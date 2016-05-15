@@ -5,24 +5,26 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "stoimostnomera")
@@ -35,7 +37,6 @@ public class Stoimostnomera implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -47,6 +48,9 @@ public class Stoimostnomera implements Serializable {
     @JoinColumn(name = "idtarif", referencedColumnName = "id")
     @ManyToOne
     private Tarifz idtarif;
+    @OneToMany(mappedBy = "idstoimostnomer")
+    @JsonIgnore
+    private Collection<Progivanie> progivanieCollection;
 
     public Stoimostnomera() {
     }
@@ -85,6 +89,15 @@ public class Stoimostnomera implements Serializable {
 
     public void setIdtarif(Tarifz idtarif) {
         this.idtarif = idtarif;
+    }
+
+    @XmlTransient
+    public Collection<Progivanie> getProgivanieCollection() {
+        return progivanieCollection;
+    }
+
+    public void setProgivanieCollection(Collection<Progivanie> progivanieCollection) {
+        this.progivanieCollection = progivanieCollection;
     }
 
     @Override

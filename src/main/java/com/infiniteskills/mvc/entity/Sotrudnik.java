@@ -5,7 +5,9 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,14 +19,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "SOTRUDNIK")
@@ -37,14 +41,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Sotrudnik.findByGrag", query = "SELECT s FROM Sotrudnik s WHERE s.grag = :grag"),
     @NamedQuery(name = "Sotrudnik.findByNum", query = "SELECT s FROM Sotrudnik s WHERE s.num = :num"),
     @NamedQuery(name = "Sotrudnik.findBySer", query = "SELECT s FROM Sotrudnik s WHERE s.ser = :ser"),
-    @NamedQuery(name = "Sotrudnik.findByMr", query = "SELECT s FROM Sotrudnik s WHERE s.mr = :mr"),
-    @NamedQuery(name = "Sotrudnik.findByDoclich", query = "SELECT s FROM Sotrudnik s WHERE s.doclich = :doclich"),
+    @NamedQuery(name = "Sotrudnik.findByKogdavidan", query = "SELECT s FROM Sotrudnik s WHERE s.kogdavidan = :kogdavidan"),
     @NamedQuery(name = "Sotrudnik.findByKemvidan", query = "SELECT s FROM Sotrudnik s WHERE s.kemvidan = :kemvidan"),
+    @NamedQuery(name = "Sotrudnik.findByDoclich", query = "SELECT s FROM Sotrudnik s WHERE s.doclich = :doclich"),
+    @NamedQuery(name = "Sotrudnik.findByEducation", query = "SELECT s FROM Sotrudnik s WHERE s.education = :education"),
     @NamedQuery(name = "Sotrudnik.findByAdres", query = "SELECT s FROM Sotrudnik s WHERE s.adres = :adres"),
     @NamedQuery(name = "Sotrudnik.findByPhone", query = "SELECT s FROM Sotrudnik s WHERE s.phone = :phone"),
-    @NamedQuery(name = "Sotrudnik.findByEducation", query = "SELECT s FROM Sotrudnik s WHERE s.education = :education"),
     @NamedQuery(name = "Sotrudnik.findByKoldet", query = "SELECT s FROM Sotrudnik s WHERE s.koldet = :koldet"),
-    @NamedQuery(name = "Sotrudnik.findByKogdavidan", query = "SELECT s FROM Sotrudnik s WHERE s.kogdavidan = :kogdavidan")})
+    @NamedQuery(name = "Sotrudnik.findByMr", query = "SELECT s FROM Sotrudnik s WHERE s.mr = :mr")})
 public class Sotrudnik implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,8 +58,7 @@ public class Sotrudnik implements Serializable {
     @Column(name = "ID")
     private Integer id;
     @Column(name = "DR")
-    @Temporal(TemporalType.DATE)
-    private Date dr;
+    private String dr;
     @Column(name = "FIO")
     private String fio;
     @Column(name = "GRAG")
@@ -65,14 +68,18 @@ public class Sotrudnik implements Serializable {
     @Column(name = "SER")
     private String ser;
     @Basic(optional = false)
-    @Column(name = "MR")
-    private String mr;
+    @Column(name = "KOGDAVIDAN")
+    @Temporal(TemporalType.DATE)
+    private Date kogdavidan;
+    @Basic(optional = false)
+    @Column(name = "KEMVIDAN")
+    private String kemvidan;
     @Basic(optional = false)
     @Column(name = "DOCLICH")
     private String doclich;
     @Basic(optional = false)
-    @Column(name = "KEMVIDAN")
-    private String kemvidan;
+    @Column(name = "EDUCATION")
+    private String education;
     @Basic(optional = false)
     @Column(name = "ADRES")
     private String adres;
@@ -80,21 +87,26 @@ public class Sotrudnik implements Serializable {
     @Column(name = "PHONE")
     private String phone;
     @Basic(optional = false)
-    @Column(name = "EDUCATION")
-    private String education;
-    @Basic(optional = false)
     @Column(name = "KOLDET")
     private int koldet;
     @Basic(optional = false)
-    @Column(name = "KOGDAVIDAN")
-    @Temporal(TemporalType.DATE)
-    private Date kogdavidan;
-    @JoinColumn(name = "IDDOLGNOST", referencedColumnName = "ID")
-    @ManyToOne
-    private Dolgnost iddolgnost;
+    @Column(name = "MR")
+    private String mr;
+    @OneToMany(mappedBy = "idsotr")
+    @JsonIgnore
+    private Collection<Otpusk> otpuskCollection;
+    @OneToMany(mappedBy = "idsotrudnik")
+    @JsonIgnore
+    private Collection<Grafik> grafikCollection;
+    @OneToMany(mappedBy = "idsotr")
+    @JsonIgnore
+    private Collection<Zayvka> zayvkaCollection;
     @JoinColumn(name = "iduser", referencedColumnName = "id")
     @ManyToOne
     private User iduser;
+    @JoinColumn(name = "IDDOLGNOST", referencedColumnName = "ID")
+    @ManyToOne
+    private Dolgnost iddolgnost;
 
     public Sotrudnik() {
     }
@@ -103,16 +115,16 @@ public class Sotrudnik implements Serializable {
         this.id = id;
     }
 
-    public Sotrudnik(Integer id, String mr, String doclich, String kemvidan, String adres, String phone, String education, int koldet, Date kogdavidan) {
+    public Sotrudnik(Integer id, Date kogdavidan, String kemvidan, String doclich, String education, String adres, String phone, int koldet, String mr) {
         this.id = id;
-        this.mr = mr;
-        this.doclich = doclich;
+        this.kogdavidan = kogdavidan;
         this.kemvidan = kemvidan;
+        this.doclich = doclich;
+        this.education = education;
         this.adres = adres;
         this.phone = phone;
-        this.education = education;
         this.koldet = koldet;
-        this.kogdavidan = kogdavidan;
+        this.mr = mr;
     }
 
     public Integer getId() {
@@ -123,11 +135,11 @@ public class Sotrudnik implements Serializable {
         this.id = id;
     }
 
-    public Date getDr() {
+    public String getDr() {
         return dr;
     }
 
-    public void setDr(Date dr) {
+    public void setDr(String dr) {
         this.dr = dr;
     }
 
@@ -163,12 +175,20 @@ public class Sotrudnik implements Serializable {
         this.ser = ser;
     }
 
-    public String getMr() {
-        return mr;
+    public Date getKogdavidan() {
+        return kogdavidan;
     }
 
-    public void setMr(String mr) {
-        this.mr = mr;
+    public void setKogdavidan(Date kogdavidan) {
+        this.kogdavidan = kogdavidan;
+    }
+
+    public String getKemvidan() {
+        return kemvidan;
+    }
+
+    public void setKemvidan(String kemvidan) {
+        this.kemvidan = kemvidan;
     }
 
     public String getDoclich() {
@@ -179,12 +199,12 @@ public class Sotrudnik implements Serializable {
         this.doclich = doclich;
     }
 
-    public String getKemvidan() {
-        return kemvidan;
+    public String getEducation() {
+        return education;
     }
 
-    public void setKemvidan(String kemvidan) {
-        this.kemvidan = kemvidan;
+    public void setEducation(String education) {
+        this.education = education;
     }
 
     public String getAdres() {
@@ -203,14 +223,6 @@ public class Sotrudnik implements Serializable {
         this.phone = phone;
     }
 
-    public String getEducation() {
-        return education;
-    }
-
-    public void setEducation(String education) {
-        this.education = education;
-    }
-
     public int getKoldet() {
         return koldet;
     }
@@ -219,20 +231,39 @@ public class Sotrudnik implements Serializable {
         this.koldet = koldet;
     }
 
-    public Date getKogdavidan() {
-        return kogdavidan;
+    public String getMr() {
+        return mr;
     }
 
-    public void setKogdavidan(Date kogdavidan) {
-        this.kogdavidan = kogdavidan;
+    public void setMr(String mr) {
+        this.mr = mr;
     }
 
-    public Dolgnost getIddolgnost() {
-        return iddolgnost;
+    @XmlTransient
+    public Collection<Otpusk> getOtpuskCollection() {
+        return otpuskCollection;
     }
 
-    public void setIddolgnost(Dolgnost iddolgnost) {
-        this.iddolgnost = iddolgnost;
+    public void setOtpuskCollection(Collection<Otpusk> otpuskCollection) {
+        this.otpuskCollection = otpuskCollection;
+    }
+
+    @XmlTransient
+    public Collection<Grafik> getGrafikCollection() {
+        return grafikCollection;
+    }
+
+    public void setGrafikCollection(Collection<Grafik> grafikCollection) {
+        this.grafikCollection = grafikCollection;
+    }
+
+    @XmlTransient
+    public Collection<Zayvka> getZayvkaCollection() {
+        return zayvkaCollection;
+    }
+
+    public void setZayvkaCollection(Collection<Zayvka> zayvkaCollection) {
+        this.zayvkaCollection = zayvkaCollection;
     }
 
     public User getIduser() {
@@ -241,6 +272,14 @@ public class Sotrudnik implements Serializable {
 
     public void setIduser(User iduser) {
         this.iduser = iduser;
+    }
+
+    public Dolgnost getIddolgnost() {
+        return iddolgnost;
+    }
+
+    public void setIddolgnost(Dolgnost iddolgnost) {
+        this.iddolgnost = iddolgnost;
     }
 
     @Override

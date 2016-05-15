@@ -50,7 +50,8 @@
                                 <li><a href="stoimostpitan" >Редактирование стоимости питания</a></li>
                                 <li><a href="stoimostnomer" >Редактирование стоимости типов номеров</a></li>
                                 <li><a href="stoimostuslug" >Редактирование стоимости услуг</a></li>
-
+                                 <li><a href="otpusk" >Редактирование отпусков</a></li>
+                                  <li><a href="grafik" >Редактирование графиков дежурств</a></li>
 
                                 <li class="divider"></li>
                             </ul>

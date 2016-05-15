@@ -6,11 +6,10 @@
 package com.infiniteskills.mvc.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "HOTEL")
@@ -47,12 +46,15 @@ public class Hotel implements Serializable {
     private String location;
     @Column(name = "NAME")
     private String name;
-    @OneToMany(mappedBy = "idhotel")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idhotel")
     @JsonIgnore
-    private Collection<Remont> remontCollection;
+    private Collection<Grafik> grafikCollection;
     @OneToMany(mappedBy = "idgostin")
     @JsonIgnore
     private Collection<Nomerhotel> nomerhotelCollection;
+    @OneToMany(mappedBy = "idhotel")
+    @JsonIgnore
+    private Collection<Remont> remontCollection;
 
     public Hotel() {
     }
@@ -86,12 +88,12 @@ public class Hotel implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Remont> getRemontCollection() {
-        return remontCollection;
+    public Collection<Grafik> getGrafikCollection() {
+        return grafikCollection;
     }
 
-    public void setRemontCollection(Collection<Remont> remontCollection) {
-        this.remontCollection = remontCollection;
+    public void setGrafikCollection(Collection<Grafik> grafikCollection) {
+        this.grafikCollection = grafikCollection;
     }
 
     @XmlTransient
@@ -101,6 +103,15 @@ public class Hotel implements Serializable {
 
     public void setNomerhotelCollection(Collection<Nomerhotel> nomerhotelCollection) {
         this.nomerhotelCollection = nomerhotelCollection;
+    }
+
+    @XmlTransient
+    public Collection<Remont> getRemontCollection() {
+        return remontCollection;
+    }
+
+    public void setRemontCollection(Collection<Remont> remontCollection) {
+        this.remontCollection = remontCollection;
     }
 
     @Override

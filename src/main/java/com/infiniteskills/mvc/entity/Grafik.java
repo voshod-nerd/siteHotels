@@ -5,34 +5,35 @@
  */
 package com.infiniteskills.mvc.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Юыху
  */
 @Entity
-@Table(name = "TYPEUSER")
+@Table(name = "grafik")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Typeuser.findAll", query = "SELECT t FROM Typeuser t"),
-    @NamedQuery(name = "Typeuser.findById", query = "SELECT t FROM Typeuser t WHERE t.id = :id"),
-    @NamedQuery(name = "Typeuser.findByName", query = "SELECT t FROM Typeuser t WHERE t.name = :name")})
-public class Typeuser implements Serializable {
+    @NamedQuery(name = "Grafik.findAll", query = "SELECT g FROM Grafik g"),
+    @NamedQuery(name = "Grafik.findById", query = "SELECT g FROM Grafik g WHERE g.id = :id"),
+    @NamedQuery(name = "Grafik.findByDayd", query = "SELECT g FROM Grafik g WHERE g.dayd = :dayd")})
+public class Grafik implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,16 +41,20 @@ public class Typeuser implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "name")
-    private String name;
-    @OneToMany(mappedBy = "typeuser")
-    @JsonIgnore
-    private Collection<User> userCollection;
+    @Column(name = "dayd")
+    @Temporal(TemporalType.DATE)
+    private Date dayd;
+    @JoinColumn(name = "idhotel", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Hotel idhotel;
+    @JoinColumn(name = "idsotrudnik", referencedColumnName = "ID")
+    @ManyToOne
+    private Sotrudnik idsotrudnik;
 
-    public Typeuser() {
+    public Grafik() {
     }
 
-    public Typeuser(Integer id) {
+    public Grafik(Integer id) {
         this.id = id;
     }
 
@@ -61,21 +66,28 @@ public class Typeuser implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Date getDayd() {
+        return dayd;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDayd(Date dayd) {
+        this.dayd = dayd;
     }
 
-    @XmlTransient
-    public Collection<User> getUserCollection() {
-        return userCollection;
+    public Hotel getIdhotel() {
+        return idhotel;
     }
 
-    public void setUserCollection(Collection<User> userCollection) {
-        this.userCollection = userCollection;
+    public void setIdhotel(Hotel idhotel) {
+        this.idhotel = idhotel;
+    }
+
+    public Sotrudnik getIdsotrudnik() {
+        return idsotrudnik;
+    }
+
+    public void setIdsotrudnik(Sotrudnik idsotrudnik) {
+        this.idsotrudnik = idsotrudnik;
     }
 
     @Override
@@ -88,10 +100,10 @@ public class Typeuser implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Typeuser)) {
+        if (!(object instanceof Grafik)) {
             return false;
         }
-        Typeuser other = (Typeuser) object;
+        Grafik other = (Grafik) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -100,7 +112,7 @@ public class Typeuser implements Serializable {
 
     @Override
     public String toString() {
-        return "com.infiniteskills.mvc.entity.Typeuser[ id=" + id + " ]";
+        return "com.infiniteskills.mvc.entity.Grafik[ id=" + id + " ]";
     }
     
 }

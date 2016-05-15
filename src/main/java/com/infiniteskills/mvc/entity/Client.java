@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "client")
@@ -60,8 +60,7 @@ public class Client implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date datavid;
     @Column(name = "DR")
-    @Temporal(TemporalType.DATE)
-    private Date dr;
+    private String dr;
     @Column(name = "FIO")
     private String fio;
     @Column(name = "KEMVIDAN")
@@ -74,15 +73,15 @@ public class Client implements Serializable {
     private String progclient;
     @Column(name = "SERDOC")
     private String serdoc;
-    @JoinColumn(name = "idorg", referencedColumnName = "ID")
-    @ManyToOne
-    private Organization idorg;
-    @JoinColumn(name = "iduser", referencedColumnName = "id")
-    @ManyToOne
-    private User iduser;
     @OneToMany(mappedBy = "idclient")
     @JsonIgnore
     private Collection<Bron> bronCollection;
+    @JoinColumn(name = "iduser", referencedColumnName = "id")
+    @ManyToOne
+    private User iduser;
+    @JoinColumn(name = "idorg", referencedColumnName = "ID")
+    @ManyToOne
+    private Organization idorg;
     @OneToMany(mappedBy = "idclient")
     @JsonIgnore
     private Collection<Progivanie> progivanieCollection;
@@ -118,11 +117,11 @@ public class Client implements Serializable {
         this.datavid = datavid;
     }
 
-    public Date getDr() {
+    public String getDr() {
         return dr;
     }
 
-    public void setDr(Date dr) {
+    public void setDr(String dr) {
         this.dr = dr;
     }
 
@@ -174,12 +173,13 @@ public class Client implements Serializable {
         this.serdoc = serdoc;
     }
 
-    public Organization getIdorg() {
-        return idorg;
+    @XmlTransient
+    public Collection<Bron> getBronCollection() {
+        return bronCollection;
     }
 
-    public void setIdorg(Organization idorg) {
-        this.idorg = idorg;
+    public void setBronCollection(Collection<Bron> bronCollection) {
+        this.bronCollection = bronCollection;
     }
 
     public User getIduser() {
@@ -190,13 +190,12 @@ public class Client implements Serializable {
         this.iduser = iduser;
     }
 
-    @XmlTransient
-    public Collection<Bron> getBronCollection() {
-        return bronCollection;
+    public Organization getIdorg() {
+        return idorg;
     }
 
-    public void setBronCollection(Collection<Bron> bronCollection) {
-        this.bronCollection = bronCollection;
+    public void setIdorg(Organization idorg) {
+        this.idorg = idorg;
     }
 
     @XmlTransient

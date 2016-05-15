@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "ZAYVKA")
@@ -51,15 +51,15 @@ public class Zayvka implements Serializable {
     private Date datezav;
     @Column(name = "STATUS")
     private String status;
-    @JoinColumn(name = "TYPEZ", referencedColumnName = "ID")
-    @ManyToOne
-    private Typeza typez;
-    @JoinColumn(name = "IDSOTR", referencedColumnName = "ID")
-    @ManyToOne
-    private Sotrudnik idsotr;
     @JoinColumn(name = "IDNOMER", referencedColumnName = "ID")
     @ManyToOne
     private Nomerhotel idnomer;
+    @JoinColumn(name = "IDSOTR", referencedColumnName = "ID")
+    @ManyToOne
+    private Sotrudnik idsotr;
+    @JoinColumn(name = "TYPEZ", referencedColumnName = "ID")
+    @ManyToOne
+    private Typeza typez;
 
     public Zayvka() {
     }
@@ -100,12 +100,12 @@ public class Zayvka implements Serializable {
         this.status = status;
     }
 
-    public Typeza getTypez() {
-        return typez;
+    public Nomerhotel getIdnomer() {
+        return idnomer;
     }
 
-    public void setTypez(Typeza typez) {
-        this.typez = typez;
+    public void setIdnomer(Nomerhotel idnomer) {
+        this.idnomer = idnomer;
     }
 
     public Sotrudnik getIdsotr() {
@@ -116,12 +116,12 @@ public class Zayvka implements Serializable {
         this.idsotr = idsotr;
     }
 
-    public Nomerhotel getIdnomer() {
-        return idnomer;
+    public Typeza getTypez() {
+        return typez;
     }
 
-    public void setIdnomer(Nomerhotel idnomer) {
-        this.idnomer = idnomer;
+    public void setTypez(Typeza typez) {
+        this.typez = typez;
     }
 
     @Override

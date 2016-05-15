@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "tarifz")
@@ -45,6 +45,15 @@ public class Tarifz implements Serializable {
     @OneToMany(mappedBy = "idtarif")
     @JsonIgnore
     private Collection<Stoimostnomera> stoimostnomeraCollection;
+    @OneToMany(mappedBy = "idtarif")
+    @JsonIgnore
+    private Collection<Program> programCollection;
+    @OneToMany(mappedBy = "idtarif")
+    @JsonIgnore
+    private Collection<Stoimostuslug> stoimostuslugCollection;
+    @OneToMany(mappedBy = "idtarif")
+    @JsonIgnore
+    private Collection<Stimostpitan> stimostpitanCollection;
 
     public Tarifz() {
     }
@@ -76,6 +85,33 @@ public class Tarifz implements Serializable {
 
     public void setStoimostnomeraCollection(Collection<Stoimostnomera> stoimostnomeraCollection) {
         this.stoimostnomeraCollection = stoimostnomeraCollection;
+    }
+
+    @XmlTransient
+    public Collection<Program> getProgramCollection() {
+        return programCollection;
+    }
+
+    public void setProgramCollection(Collection<Program> programCollection) {
+        this.programCollection = programCollection;
+    }
+
+    @XmlTransient
+    public Collection<Stoimostuslug> getStoimostuslugCollection() {
+        return stoimostuslugCollection;
+    }
+
+    public void setStoimostuslugCollection(Collection<Stoimostuslug> stoimostuslugCollection) {
+        this.stoimostuslugCollection = stoimostuslugCollection;
+    }
+
+    @XmlTransient
+    public Collection<Stimostpitan> getStimostpitanCollection() {
+        return stimostpitanCollection;
+    }
+
+    public void setStimostpitanCollection(Collection<Stimostpitan> stimostpitanCollection) {
+        this.stimostpitanCollection = stimostpitanCollection;
     }
 
     @Override

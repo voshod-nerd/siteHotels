@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "bron")
@@ -48,12 +48,12 @@ public class Bron implements Serializable {
     @Column(name = "datee")
     @Temporal(TemporalType.DATE)
     private Date datee;
-    @JoinColumn(name = "idclient", referencedColumnName = "ID")
-    @ManyToOne
-    private Client idclient;
     @JoinColumn(name = "idnomer", referencedColumnName = "ID")
     @ManyToOne
     private Nomerhotel idnomer;
+    @JoinColumn(name = "idclient", referencedColumnName = "ID")
+    @ManyToOne
+    private Client idclient;
 
     public Bron() {
     }
@@ -86,20 +86,20 @@ public class Bron implements Serializable {
         this.datee = datee;
     }
 
-    public Client getIdclient() {
-        return idclient;
-    }
-
-    public void setIdclient(Client idclient) {
-        this.idclient = idclient;
-    }
-
     public Nomerhotel getIdnomer() {
         return idnomer;
     }
 
     public void setIdnomer(Nomerhotel idnomer) {
         this.idnomer = idnomer;
+    }
+
+    public Client getIdclient() {
+        return idclient;
+    }
+
+    public void setIdclient(Client idclient) {
+        this.idclient = idclient;
     }
 
     @Override

@@ -27,6 +27,9 @@
     <class>com.infiniteskills.mvc.entity.Tarifz</class>
     <class>com.infiniteskills.mvc.entity.Uslug</class>
     <class>com.infiniteskills.mvc.entity.Pitanie</class>
+    <class>com.infiniteskills.mvc.entity.Grafik</class>
+    <class>com.infiniteskills.mvc.entity.Otpusk</class>
+    <class>com.infiniteskills.mvc.controllers.rest.Grafik</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/spring?zeroDateTimeBehavior=convertToNull"/>

@@ -5,7 +5,9 @@
  */
 package com.infiniteskills.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,12 +18,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "stimostpitan")
@@ -38,26 +42,23 @@ public class Stimostpitan implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
     @Column(name = "sum")
-    private long sum;
-    @JoinColumn(name = "idtarif", referencedColumnName = "id")
-    @ManyToOne
-    private Tarifz idtarif;
+    private Long sum;
+    @OneToMany(mappedBy = "idstoimostpit")
+    @JsonIgnore
+    private Collection<Progivanie> progivanieCollection;
     @JoinColumn(name = "idpitanie", referencedColumnName = "id")
     @ManyToOne
     private Pitanie idpitanie;
+    @JoinColumn(name = "idtarif", referencedColumnName = "id")
+    @ManyToOne
+    private Tarifz idtarif;
 
     public Stimostpitan() {
     }
 
     public Stimostpitan(Integer id) {
         this.id = id;
-    }
-
-    public Stimostpitan(Integer id, long sum) {
-        this.id = id;
-        this.sum = sum;
     }
 
     public Integer getId() {
@@ -68,20 +69,21 @@ public class Stimostpitan implements Serializable {
         this.id = id;
     }
 
-    public long getSum() {
+    public Long getSum() {
         return sum;
     }
 
-    public void setSum(long sum) {
+    public void setSum(Long sum) {
         this.sum = sum;
     }
 
-    public Tarifz getIdtarif() {
-        return idtarif;
+    @XmlTransient
+    public Collection<Progivanie> getProgivanieCollection() {
+        return progivanieCollection;
     }
 
-    public void setIdtarif(Tarifz idtarif) {
-        this.idtarif = idtarif;
+    public void setProgivanieCollection(Collection<Progivanie> progivanieCollection) {
+        this.progivanieCollection = progivanieCollection;
     }
 
     public Pitanie getIdpitanie() {
@@ -90,6 +92,14 @@ public class Stimostpitan implements Serializable {
 
     public void setIdpitanie(Pitanie idpitanie) {
         this.idpitanie = idpitanie;
+    }
+
+    public Tarifz getIdtarif() {
+        return idtarif;
+    }
+
+    public void setIdtarif(Tarifz idtarif) {
+        this.idtarif = idtarif;
     }
 
     @Override

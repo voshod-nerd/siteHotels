@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "program")
@@ -52,12 +52,12 @@ public class Program implements Serializable {
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
-    @JoinColumn(name = "idtarif", referencedColumnName = "id")
-    @ManyToOne
-    private Tarifz idtarif;
     @JoinColumn(name = "idorganization", referencedColumnName = "ID")
     @ManyToOne
     private Organization idorganization;
+    @JoinColumn(name = "idtarif", referencedColumnName = "id")
+    @ManyToOne
+    private Tarifz idtarif;
 
     public Program() {
     }
@@ -103,20 +103,20 @@ public class Program implements Serializable {
         this.name = name;
     }
 
-    public Tarifz getIdtarif() {
-        return idtarif;
-    }
-
-    public void setIdtarif(Tarifz idtarif) {
-        this.idtarif = idtarif;
-    }
-
     public Organization getIdorganization() {
         return idorganization;
     }
 
     public void setIdorganization(Organization idorganization) {
         this.idorganization = idorganization;
+    }
+
+    public Tarifz getIdtarif() {
+        return idtarif;
+    }
+
+    public void setIdtarif(Tarifz idtarif) {
+        this.idtarif = idtarif;
     }
 
     @Override

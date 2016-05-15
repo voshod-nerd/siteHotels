@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "stoimostuslug")
@@ -45,12 +45,12 @@ public class Stoimostuslug implements Serializable {
     private Integer id;
     @Column(name = "summa")
     private BigInteger summa;
-    @JoinColumn(name = "idtarif", referencedColumnName = "id")
-    @ManyToOne
-    private Tarifz idtarif;
     @JoinColumn(name = "iduslug", referencedColumnName = "id")
     @ManyToOne
     private Uslug iduslug;
+    @JoinColumn(name = "idtarif", referencedColumnName = "id")
+    @ManyToOne
+    private Tarifz idtarif;
     @OneToMany(mappedBy = "idstoimostuslig")
     @JsonIgnore
     private Collection<Reestruslug> reestruslugCollection;
@@ -78,20 +78,20 @@ public class Stoimostuslug implements Serializable {
         this.summa = summa;
     }
 
-    public Tarifz getIdtarif() {
-        return idtarif;
-    }
-
-    public void setIdtarif(Tarifz idtarif) {
-        this.idtarif = idtarif;
-    }
-
     public Uslug getIduslug() {
         return iduslug;
     }
 
     public void setIduslug(Uslug iduslug) {
         this.iduslug = iduslug;
+    }
+
+    public Tarifz getIdtarif() {
+        return idtarif;
+    }
+
+    public void setIdtarif(Tarifz idtarif) {
+        this.idtarif = idtarif;
     }
 
     @XmlTransient

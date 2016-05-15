@@ -1,18 +1,16 @@
 'use strict';
 
-App.controller('ControllerProg', ['$scope', 'ServicsProg',
-    function ($scope, ServicsProg) {
+App.controller('ControllerOtpusk', ['$scope', 'ServicsOtpusk',
+    function ($scope, ServicsOtpusk) {
         var self = this;
+
+
 
         self.unit = {
             id: null,
+            idsotr: null,
             dateb: null,
-            dateend:null,
-            name: '',
-            idtarif: null,
-            idorganization: null
-           
-
+            dateend: null
         };
 
 
@@ -21,9 +19,8 @@ App.controller('ControllerProg', ['$scope', 'ServicsProg',
         self.units = [];
 
 
-
         self.fetchAllU = function () {
-            ServicsProg.fetchAllU()
+            ServicsOtpusk.fetchAllU()
                     .then(
                             function (d) {
                                 self.units = d;
@@ -38,7 +35,7 @@ App.controller('ControllerProg', ['$scope', 'ServicsProg',
         self.fetchAllU();
 
         self.createU = function (unit) {
-            ServicsProg.createU(unit)
+            v.createU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -48,7 +45,7 @@ App.controller('ControllerProg', ['$scope', 'ServicsProg',
         };
 
         self.updateU = function (unit) {
-            ServicsProg.updateU(unit)
+            ServicsOtpusk.updateU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -58,7 +55,7 @@ App.controller('ControllerProg', ['$scope', 'ServicsProg',
         };
 
         self.deleteU = function (unit) {
-            ServicsProg.deleteU(unit)
+            ServicsOtpusk.deleteU(unit)
                     .then(
                             self.fetchAllU,
                             function (errResponse) {
@@ -72,65 +69,38 @@ App.controller('ControllerProg', ['$scope', 'ServicsProg',
 
         self.edit = function (unit) {
             console.log('Unit name to be edited', unit);
-            var org = (unit.idorganization !== null) ?
-                    JSON.stringify(unit.idorganization) : null;
-            var tar = (unit.idtarif !== null) ?
-                    JSON.stringify(unit.idtarif) : null;
+            var sotr = (unit.idsotr !== null) ?
+                    JSON.stringify(unit.idsotr) : null;
+
+
 
             self.unit = unit;
-            
-            self.unit.dateb=new Date(unit.dateb);
-            self.unit.dateend=new Date(unit.dateend);
-            
-            self.unit.idorganization = org;
-            self.unit.idtarif = tar;
-
-
+            self.unit.idsotr = sotr;
+            self.unit.dateb = new Date(unit.dateb);
+            self.unit.dateend = new Date(unit.dateend);
             $scope.myForm.$setDirty();
         };
 
 
         self.reset = function () {
             self.unit = {
-               id: null,
-            dateb: null,
-            dateend:null,
-            name: '',
-            idtarif: null,
-            idorganization: null
-
-
+                id: null,
+                idsotr: null,
+                dateb: null,
+                dateend: null
             };
             $scope.myForm.$setPristine(); //reset Form
         };
 
         self.submit = function () {
-            // console.log('department - ' + self.employee.department);
-            /* var department = self.employee.department !== null ?
-             JSON.parse(self.employee.department) : null;
-             var post = self.employee.post !== null ?
-             JSON.parse(self.employee.post) : null;
-             */
-            //self.unit.location = department;
-            //self.unit.name = post;
 
-            var org = (self.unit.idorganization !== null) ?
-                    JSON.parse(self.unit.idorganization) : null;
-             var tar = self.unit.idtarif !== null ?
-            JSON.parse(self.unit.idtarif) : null;
-            
-           
-            
-            self.unit.idorganization = org;
-            self.unit.idtarif = tar;
-            
-            
-            self.unit.dateb=new Date((self.unit.dateb));
-            self.unit.dateend=new Date((self.unit.dateend));        
-            alert(JSON.stringify(self.unit));
-           
-           
 
+            var sotr = self.unit.idsotr !== null ?
+                    JSON.parse(self.unit.idsotr) : null;
+
+            self.unit.idsotr = sotr;
+            self.unit.dateb = new Date((self.unit.dateb));
+            self.unit.dateend = new Date((self.unit.dateend));
 
 
             if (self.unit.id === null) {

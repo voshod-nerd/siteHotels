@@ -11,8 +11,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Соколов
+ * @author Олег
  */
 @Entity
 @Table(name = "progivanie")
@@ -41,7 +39,6 @@ public class Progivanie implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -55,18 +52,18 @@ public class Progivanie implements Serializable {
     private BigInteger dopusl;
     @Column(name = "totalsum")
     private BigInteger totalsum;
-    @JoinColumn(name = "idstoimostpit", referencedColumnName = "id")
-    @ManyToOne
-    private Stimostpitan idstoimostpit;
-    @JoinColumn(name = "idstoimostnomer", referencedColumnName = "id")
-    @ManyToOne
-    private Stoimostnomera idstoimostnomer;
-    @JoinColumn(name = "idnomer", referencedColumnName = "ID")
-    @ManyToOne
-    private Nomerhotel idnomer;
     @JoinColumn(name = "idclient", referencedColumnName = "ID")
     @ManyToOne
     private Client idclient;
+    @JoinColumn(name = "idnomer", referencedColumnName = "ID")
+    @ManyToOne
+    private Nomerhotel idnomer;
+    @JoinColumn(name = "idstoimostnomer", referencedColumnName = "id")
+    @ManyToOne
+    private Stoimostnomera idstoimostnomer;
+    @JoinColumn(name = "idstoimostpit", referencedColumnName = "id")
+    @ManyToOne
+    private Stimostpitan idstoimostpit;
 
     public Progivanie() {
     }
@@ -115,20 +112,12 @@ public class Progivanie implements Serializable {
         this.totalsum = totalsum;
     }
 
-    public Stimostpitan getIdstoimostpit() {
-        return idstoimostpit;
+    public Client getIdclient() {
+        return idclient;
     }
 
-    public void setIdstoimostpit(Stimostpitan idstoimostpit) {
-        this.idstoimostpit = idstoimostpit;
-    }
-
-    public Stoimostnomera getIdstoimostnomer() {
-        return idstoimostnomer;
-    }
-
-    public void setIdstoimostnomer(Stoimostnomera idstoimostnomer) {
-        this.idstoimostnomer = idstoimostnomer;
+    public void setIdclient(Client idclient) {
+        this.idclient = idclient;
     }
 
     public Nomerhotel getIdnomer() {
@@ -139,12 +128,20 @@ public class Progivanie implements Serializable {
         this.idnomer = idnomer;
     }
 
-    public Client getIdclient() {
-        return idclient;
+    public Stoimostnomera getIdstoimostnomer() {
+        return idstoimostnomer;
     }
 
-    public void setIdclient(Client idclient) {
-        this.idclient = idclient;
+    public void setIdstoimostnomer(Stoimostnomera idstoimostnomer) {
+        this.idstoimostnomer = idstoimostnomer;
+    }
+
+    public Stimostpitan getIdstoimostpit() {
+        return idstoimostpit;
+    }
+
+    public void setIdstoimostpit(Stimostpitan idstoimostpit) {
+        this.idstoimostpit = idstoimostpit;
     }
 
     @Override

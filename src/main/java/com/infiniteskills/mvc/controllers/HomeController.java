@@ -15,7 +15,13 @@ import com.infiniteskills.mvc.repository.DepartmentRepository;
 import com.infiniteskills.mvc.repository.HotelRepository;
 import com.infiniteskills.mvc.repository.SotrudnikRepository;
 import com.infiniteskills.mvc.repository.TypeZayavkaRepository;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.ui.ModelMap;
 
 @Controller
@@ -44,6 +50,33 @@ public class HomeController {
     @Autowired(required = false)
     public void setSotrudnikRepository(SotrudnikRepository sotr) {
         this.sotrRepository = sotr;
+    }
+
+    @RequestMapping(value = "/enter", method = RequestMethod.GET)
+    public String adminPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+        return "corporative/enter";
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "welcome";
+    }
+
+    private String getPrincipal() {
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)

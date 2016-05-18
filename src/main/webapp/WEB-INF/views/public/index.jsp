@@ -51,6 +51,7 @@
             <li><a href="" target="_blank">Контакты</a></li>
             <li><a href="" target="_blank">Об отелях</a></li>
               <li><a href="home" target="_blank">Корпоративный сайт</a></li>
+              <li><a href="enter" target="_blank">Вход</a></li>
           </ul>
         </div>
       </div>
